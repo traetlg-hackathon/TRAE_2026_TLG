@@ -37,7 +37,7 @@ export const LogInput: React.FC<LogInputProps> = ({ onGenerate }) => {
             className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
           >
             {SAMPLE_LOGS.map(log => (
-              <option key={log.id} value={log.id}>{log.name}</option>
+              <option key={log.id} value={log.id}>{log.title}</option>
             ))}
           </select>
         </div>
