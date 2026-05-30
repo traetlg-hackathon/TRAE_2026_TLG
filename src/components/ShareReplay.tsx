@@ -6,6 +6,13 @@ export default function ShareReplay() {
   const [copied, setCopied] = useState(false);
 
   const handleShare = () => {
+    const fakeLink = "https://duelcut.demo/replay/demo-comeback-turn";
+    try {
+      navigator.clipboard.writeText(fakeLink);
+    } catch {
+      // Fallback: show the link
+      console.log(fakeLink);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
