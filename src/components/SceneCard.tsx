@@ -6,9 +6,11 @@ import { useState } from "react";
 interface SceneCardProps {
   scene: StoryScene;
   onUpdate: (updatedScene: StoryScene) => void;
+  isSelected?: boolean;
+  onClick?: () => void;
 }
 
-export default function SceneCard({ scene, onUpdate }: SceneCardProps) {
+export function SceneCard({ scene, onUpdate, isSelected = false, onClick }: SceneCardProps) {
   const [copied, setCopied] = useState(false);
 
   const handleChange = (field: keyof StoryScene, value: string | number) => {
@@ -24,8 +26,13 @@ export default function SceneCard({ scene, onUpdate }: SceneCardProps) {
   };
 
   return (
-    <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 flex flex-col gap-6 hover:border-blue-500/30 transition-all group relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-1 h-full bg-blue-600/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+    <div 
+      onClick={onClick}
+      className={`bg-zinc-900/50 border rounded-2xl p-6 flex flex-col gap-6 hover:border-blue-500/30 transition-all group relative overflow-hidden cursor-pointer ${
+        isSelected ? "border-blue-500 ring-2 ring-blue-500/20" : "border-zinc-800"
+      }`}
+    >
+      <div className={`absolute top-0 left-0 w-1 h-full transition-opacity ${isSelected ? "bg-blue-600 opacity-100" : "bg-blue-600/50 opacity-0 group-hover:opacity-100"}`} />
       
       <div className="flex justify-between items-start">
         <div className="flex flex-col gap-1">

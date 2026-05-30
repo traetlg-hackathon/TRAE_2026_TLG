@@ -6,7 +6,7 @@ interface LogInputProps {
   onGenerate: (logId: string, content: string) => void;
 }
 
-export default function LogInput({ onGenerate }: LogInputProps) {
+export function LogInput({ onGenerate }: LogInputProps) {
   const [selectedLogId, setSelectedLogId] = useState(SAMPLE_LOGS[0].id);
   const [logContent, setLogContent] = useState(SAMPLE_LOGS[0].content);
 

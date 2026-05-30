@@ -1,6 +1,6 @@
 import { Video, Sparkles, Play } from "lucide-react";
 
-export default function Header() {
+export function Header() {
   return (
     <header className="sticky top-0 z-50 glass border-b border-white/5 py-4 px-8 mb-8">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
