@@ -12,7 +12,7 @@ import { generateStoryboard } from "@/lib/generateStoryboard";
 export default function Home() {
   const [scenes, setScenes] = useState<StoryScene[]>([]);
 
-  const handleGenerate = (logId: string) => {
+  const handleGenerate = (logId: string, content: string) => {
     const actions = generateActions(logId);
     const generatedScenes = generateStoryboard(actions);
     setScenes(generatedScenes);

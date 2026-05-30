@@ -51,6 +51,102 @@ export function generateActions(logId: string): BattleAction[] {
     ];
   }
 
+  if (logId === "trap-reversal") {
+    return [
+      {
+        id: "tr1",
+        turn: 10,
+        actor: "Player B",
+        action: "setup",
+        summary: "Player B sets a hidden trap and ends their turn.",
+        visualIntent: "A mysterious card placed face-down on the field, glowing faintly.",
+      },
+      {
+        id: "tr2",
+        turn: 11,
+        actor: "Player A",
+        card: "Crimson Dragon",
+        action: "attack",
+        summary: "Player A declares an attack with Crimson Dragon.",
+        visualIntent: "A red dragon breathing fire, diving towards the opponent.",
+      },
+      {
+        id: "tr3",
+        turn: 11,
+        actor: "Player B",
+        card: "Mirror Force",
+        action: "activate",
+        summary: "Player B reveals Mirror Force to destroy the attacking monster.",
+        visualIntent: "A shimmering shield reflecting the dragon's attack.",
+      },
+      {
+        id: "tr4",
+        turn: 11,
+        actor: "Player A",
+        action: "activate",
+        summary: "Player A activates a counter spell to protect Crimson Dragon.",
+        visualIntent: "A protective barrier forming around the dragon.",
+      },
+      {
+        id: "tr5",
+        turn: 11,
+        actor: "Player A",
+        card: "Crimson Dragon",
+        action: "damage",
+        summary: "Crimson Dragon lands the final attack.",
+        visualIntent: "The dragon breaking through and striking the opponent.",
+      },
+    ];
+  }
+
+  if (logId === "ancient-revival") {
+    return [
+      {
+        id: "ar1",
+        turn: 7,
+        actor: "Player A",
+        action: "setup",
+        summary: "Player A has 1000 LP left and no monsters. Draws the final card.",
+        visualIntent: "Extreme close-up on Player A's determined face as they draw.",
+      },
+      {
+        id: "ar2",
+        turn: 7,
+        actor: "Player A",
+        card: "Rebirth Gate",
+        action: "activate",
+        summary: "Player A activates Rebirth Gate to revive an ancient machine titan.",
+        visualIntent: "A massive metallic gate opening, steam and gears turning.",
+      },
+      {
+        id: "ar3",
+        turn: 7,
+        actor: "Player A",
+        card: "Ancient Machine Titan",
+        action: "summon",
+        summary: "The titan absorbs energy from three destroyed cards.",
+        visualIntent: "Three cards dissolving into light, fueling a giant robot.",
+      },
+      {
+        id: "ar4",
+        turn: 7,
+        actor: "Player A",
+        card: "Ancient Machine Titan",
+        action: "attack",
+        summary: "Player A attacks all enemy units.",
+        visualIntent: "The titan firing beams from multiple cannons.",
+      },
+      {
+        id: "ar5",
+        turn: 7,
+        actor: "Player A",
+        action: "damage",
+        summary: "Player A wins the duel.",
+        visualIntent: "A massive explosion as the opponent's field is cleared.",
+      },
+    ];
+  }
+
   // Fallback for other logs (simplified)
   return [
     {
