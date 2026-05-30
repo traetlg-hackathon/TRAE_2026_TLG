@@ -69,14 +69,15 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes }) => {
           <Timeline 
             scenes={scenes} 
             currentIndex={currentSceneIndex}
-            onSeek={setCurrentSceneIndex}
+            onSelect={setCurrentSceneIndex}
+            totalDuration={scenes.reduce((acc, s) => acc + s.duration, 0)}
           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-12">
-          <TimestampComments />
+          <TimestampComments totalDuration={scenes.reduce((acc, s) => acc + s.duration, 0)} />
         </div>
       </div>
     </div>
