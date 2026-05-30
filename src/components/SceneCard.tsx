@@ -1,76 +1,103 @@
-import React from 'react';
-import { StoryScene } from '@/types';
-import { Clock, Video, Palette, Zap, Copy, Check } from 'lucide-react';
-import { useState } from 'react';
+import { StoryScene } from "@/types/replay";
+import { compilePixVersePrompt } from "@/lib/compilePixVersePrompt";
 
 interface SceneCardProps {
   scene: StoryScene;
   onUpdate: (updatedScene: StoryScene) => void;
-  isSelected: boolean;
-  onClick: () => void;
 }
 
-export const SceneCard: React.FC<SceneCardProps> = ({ scene, onUpdate, isSelected, onClick }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    navigator.clipboard.writeText(scene.prompt);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+export default function SceneCard({ scene, onUpdate }: SceneCardProps) {
+  const handleChange = (field: keyof StoryScene, value: string | number) => {
+    const updatedScene = { ...scene, [field]: value };
+    updatedScene.prompt = compilePixVersePrompt(updatedScene);
+    onUpdate(updatedScene);
   };
 
   return (
-    <div 
-      onClick={onClick}
-      className={`group relative flex flex-col gap-3 p-4 rounded-xl border transition-all cursor-pointer ${
-        isSelected 
-          ? 'bg-blue-600/10 border-blue-500 shadow-lg shadow-blue-500/10' 
-          : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'
-      }`}
-    >
+    <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col gap-6 hover:border-zinc-700 transition-colors">
       <div className="flex justify-between items-start">
-        <h3 className="font-bold text-white group-hover:text-blue-400 transition-colors">{scene.title}</h3>
-        <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-black/40 border border-white/10">
-          <Clock className="w-3 h-3 text-white/60" />
-          <span className="text-[10px] font-mono text-white/80">{scene.duration}s</span>
+        <div className="flex flex-col gap-1">
+          <h3 className="text-lg font-bold text-white">{scene.title}</h3>
+          <p className="text-sm text-zinc-400">{scene.actionSummary}</p>
+        </div>
+        <div className="bg-zinc-800 px-3 py-1 rounded text-xs font-mono text-zinc-300">
+          {scene.duration}s
         </div>
       </div>
 
-      <p className="text-sm text-white/70 line-clamp-2 italic leading-relaxed">
-        "{scene.actionSummary}"
-      </p>
-
-      <div className="grid grid-cols-2 gap-2 mt-auto">
-        <div className="flex items-center gap-1.5 text-[10px] text-white/50">
-          <Palette className="w-3 h-3" />
-          <span>{scene.mood}</span>
-        </div>
-        <div className="flex items-center gap-1.5 text-[10px] text-white/50">
-          <Video className="w-3 h-3" />
-          <span>{scene.camera}</span>
-        </div>
-      </div>
-
-      <div className="mt-2 pt-3 border-t border-white/5">
-        <div className="flex justify-between items-center mb-1.5">
-          <span className="text-[10px] font-medium text-white/40 uppercase tracking-wider">PixVerse Prompt</span>
-          <button 
-            onClick={handleCopy}
-            className="p-1 hover:bg-white/10 rounded transition-colors"
-            title="Copy Prompt"
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="flex flex-col gap-2">
+          <label className="text-xs text-zinc-500 uppercase font-bold tracking-wider">Mood</label>
+          <select
+            value={scene.mood}
+            onChange={(e) => handleChange("mood", e.target.value)}
+            className="bg-zinc-800 border border-zinc-700 text-white rounded p-2 text-sm outline-none"
           >
-            {copied ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3 text-white/40" />}
+            <option value="dark">Dark</option>
+            <option value="heroic">Heroic</option>
+            <option value="chaotic">Chaotic</option>
+            <option value="cinematic">Cinematic</option>
+          </select>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-xs text-zinc-500 uppercase font-bold tracking-wider">Camera</label>
+          <select
+            value={scene.camera}
+            onChange={(e) => handleChange("camera", e.target.value)}
+            className="bg-zinc-800 border border-zinc-700 text-white rounded p-2 text-sm outline-none"
+          >
+            <option value="close-up">Close-up</option>
+            <option value="dolly-in">Dolly-in</option>
+            <option value="overhead">Overhead</option>
+            <option value="whip-pan">Whip-pan</option>
+          </select>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-xs text-zinc-500 uppercase font-bold tracking-wider">Intensity</label>
+          <input
+            type="range"
+            min="1"
+            max="5"
+            value={scene.intensity}
+            onChange={(e) => handleChange("intensity", parseInt(e.target.value))}
+            className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-blue-500"
+          />
+          <div className="flex justify-between text-[10px] text-zinc-600 px-1">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-xs text-zinc-500 uppercase font-bold tracking-wider">Duration (s)</label>
+          <input
+            type="number"
+            min="1"
+            max="15"
+            value={scene.duration}
+            onChange={(e) => handleChange("duration", parseInt(e.target.value))}
+            className="bg-zinc-800 border border-zinc-700 text-white rounded p-2 text-sm outline-none"
+          />
+        </div>
+      </div>
+
+      <div className="bg-black border border-zinc-800 rounded-lg p-4">
+        <div className="flex justify-between items-center mb-2">
+          <label className="text-xs text-zinc-500 uppercase font-bold tracking-wider">PixVerse Prompt</label>
+          <button 
+            onClick={() => navigator.clipboard.writeText(scene.prompt)}
+            className="text-[10px] text-blue-400 hover:text-blue-300 font-bold uppercase"
+          >
+            Copy
           </button>
         </div>
-        <div className="bg-black/60 p-2 rounded text-[10px] font-mono text-blue-300/80 leading-tight break-words border border-white/5">
-          {scene.prompt}
-        </div>
+        <p className="text-xs text-zinc-300 font-mono leading-relaxed">{scene.prompt}</p>
       </div>
-      
-      {isSelected && (
-        <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-12 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50" />
-      )}
     </div>
   );
-};
+}
