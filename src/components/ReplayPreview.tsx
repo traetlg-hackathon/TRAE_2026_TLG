@@ -45,6 +45,10 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
   const currentVideoJobId = currentVideo?.jobId ?? null;
   const currentVideoState = currentVideo?.state ?? "idle";
   const currentVideoError = currentVideo?.error ?? null;
+  const currentDownloadHref =
+    currentVideoUrl && currentScene
+      ? `/api/video-download?url=${encodeURIComponent(currentVideoUrl)}&filename=${encodeURIComponent(`duelcut-scene-${currentSceneIndex + 1}-${currentScene.id}.mp4`)}`
+      : null;
   const isCurrentSceneRendering = currentVideoState === "submitting" || currentVideoState === "polling";
   const createButtonLabel = isBatchRendering
     ? `Rendering ${batchRenderIndex == null ? 0 : batchRenderIndex + 1}/${scenes.length}…`
@@ -372,13 +376,24 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
           )}
 
           <div className="absolute bottom-4 right-4 opacity-100 transition-opacity">
-            <button
-              onClick={handleFullscreen}
-              aria-label="Fullscreen preview"
-              className="p-2 bg-black/60 rounded-lg text-white/80 hover:text-white transition-colors"
-            >
-              <Maximize2 className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-2">
+              {currentDownloadHref && (
+                <a
+                  href={currentDownloadHref}
+                  aria-label="Download current video"
+                  className="px-3 py-2 bg-black/60 rounded-lg text-xs font-bold text-white/80 hover:text-white transition-colors"
+                >
+                  MP4
+                </a>
+              )}
+              <button
+                onClick={handleFullscreen}
+                aria-label="Fullscreen preview"
+                className="p-2 bg-black/60 rounded-lg text-white/80 hover:text-white transition-colors"
+              >
+                <Maximize2 className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -418,6 +433,15 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
             </div>
 
             <div className="flex items-center gap-4">
+              {currentDownloadHref && (
+                <a
+                  href={currentDownloadHref}
+                  aria-label="Download video"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold bg-emerald-600 text-white hover:bg-emerald-500"
+                >
+                  Download Video
+                </a>
+              )}
               {currentVideoJobId && !currentVideoUrl && (
                 <button
                   onClick={handleCheckCurrentResult}

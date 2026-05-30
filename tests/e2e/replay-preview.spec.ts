@@ -20,6 +20,15 @@ test("creates all scene videos and controls preview scenes", async ({ page }) =>
   await expect(page.getByText(/All scenes rendered/)).toBeVisible();
   await expect(page.locator("video")).toBeVisible();
   await expect(page.locator("video")).toHaveAttribute("src", /flower\.mp4/);
+  await expect(page.getByRole("link", { name: "Download video" })).toHaveAttribute(
+    "href",
+    /\/api\/video-download\?url=.*flower\.mp4/,
+  );
+
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("link", { name: "Download video" }).click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/^duelcut-scene-1-.*\.mp4$/);
 
   const video = page.locator("video");
   await video.evaluate((node: HTMLVideoElement) => node.pause());
