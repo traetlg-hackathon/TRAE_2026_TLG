@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryScene } from '@/types';
+import { StoryScene } from '@/types/replay';
 import { Clock, Video, Palette, Zap, Copy, Check } from 'lucide-react';
 import { useState } from 'react';
 
@@ -44,11 +44,11 @@ export const SceneCard: React.FC<SceneCardProps> = ({ scene, onUpdate, isSelecte
       <div className="grid grid-cols-2 gap-2 mt-auto">
         <div className="flex items-center gap-1.5 text-[10px] text-white/50">
           <Palette className="w-3 h-3" />
-          <span>{scene.mood}</span>
+          <span className="capitalize">{scene.mood}</span>
         </div>
         <div className="flex items-center gap-1.5 text-[10px] text-white/50">
           <Video className="w-3 h-3" />
-          <span>{scene.camera}</span>
+          <span className="capitalize">{scene.camera.replace('-', ' ')}</span>
         </div>
       </div>
 

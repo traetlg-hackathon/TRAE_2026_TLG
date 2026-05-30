@@ -6,18 +6,21 @@ import { LogInput } from '@/components/LogInput';
 import { StoryboardPanel } from '@/components/StoryboardPanel';
 import { SceneControls } from '@/components/SceneControls';
 import { ReplayPreview } from '@/components/ReplayPreview';
-import { StoryScene } from '@/types';
-import { generateActions, generateStoryboard } from '@/lib/duel-logic';
+import { StoryScene } from '@/types/replay';
+import { generateActions } from '@/lib/generateActions';
+import { generateStoryboard } from '@/lib/generateStoryboard';
+import { compilePixVersePrompt } from '@/lib/compilePixVersePrompt';
 
 export default function Home() {
   const [logContent, setLogContent] = useState('');
   const [scenes, setScenes] = useState<StoryScene[]>([]);
   const [selectedSceneId, setSelectedSceneId] = useState<string | null>(null);
 
-  const handleGenerate = () => {
-    if (!logContent.trim()) return;
+  const handleGenerate = (logId: string, content: string) => {
+    if (!content.trim()) return;
     
-    const actions = generateActions(logContent);
+    // Using the logic from Person 2 (modular files)
+    const actions = generateActions(logId);
     const generatedScenes = generateStoryboard(actions);
     setScenes(generatedScenes);
     if (generatedScenes.length > 0) {
@@ -26,7 +29,12 @@ export default function Home() {
   };
 
   const handleUpdateScene = (updatedScene: StoryScene) => {
-    setScenes(prev => prev.map(s => s.id === updatedScene.id ? updatedScene : s));
+    // Regenerate prompt when controls change using modular logic
+    const sceneWithNewPrompt = {
+      ...updatedScene,
+      prompt: compilePixVersePrompt(updatedScene)
+    };
+    setScenes(prev => prev.map(s => s.id === updatedScene.id ? sceneWithNewPrompt : s));
   };
 
   const selectedScene = scenes.find(s => s.id === selectedSceneId) || null;
@@ -38,17 +46,15 @@ export default function Home() {
       <div className="flex-grow container mx-auto px-4 py-8 flex flex-col gap-8">
         {/* Top Section: Input and Editor */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left: Log Input (3 cols) */}
-          <div className="lg:col-span-3 h-full">
+          {/* Left: Log Input (4 cols to match origin/main layout width) */}
+          <div className="lg:col-span-4 h-full">
             <LogInput 
-              logContent={logContent} 
-              setLogContent={setLogContent} 
               onGenerate={handleGenerate} 
             />
           </div>
 
-          {/* Middle: Storyboard Editor (6 cols) */}
-          <div className="lg:col-span-6 h-full flex flex-col">
+          {/* Middle: Storyboard Editor (5 cols) */}
+          <div className="lg:col-span-5 h-full flex flex-col">
             <StoryboardPanel 
               scenes={scenes} 
               onUpdateScene={handleUpdateScene}
@@ -67,13 +73,15 @@ export default function Home() {
         </div>
 
         {/* Bottom Section: Replay Preview */}
-        <div className="w-full">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <h2 className="text-lg font-semibold text-white">Live Replay Preview</h2>
+        {scenes.length > 0 && (
+          <div className="w-full">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+              <h2 className="text-lg font-semibold text-white">Live Replay Preview</h2>
+            </div>
+            <ReplayPreview scenes={scenes} />
           </div>
-          <ReplayPreview scenes={scenes} />
-        </div>
+        )}
       </div>
 
       {/* Footer */}

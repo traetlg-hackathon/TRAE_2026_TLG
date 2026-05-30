@@ -1,18 +1,23 @@
-import React from 'react';
-import { SAMPLE_LOGS } from '@/lib/duel-logic';
+'use client';
+
+import React, { useState } from 'react';
+import { SAMPLE_LOGS } from '@/data/sampleLogs';
 import { FileText, Wand2, Info } from 'lucide-react';
 
 interface LogInputProps {
-  logContent: string;
-  setLogContent: (content: string) => void;
-  onGenerate: () => void;
+  onGenerate: (logId: string, content: string) => void;
 }
 
-export const LogInput: React.FC<LogInputProps> = ({ logContent, setLogContent, onGenerate }) => {
+export const LogInput: React.FC<LogInputProps> = ({ onGenerate }) => {
+  const [selectedLogId, setSelectedLogId] = useState(SAMPLE_LOGS[0].id);
+  const [logContent, setLogContent] = useState(SAMPLE_LOGS[0].content);
+
   const handleSampleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = SAMPLE_LOGS.find(log => log.id === e.target.value);
-    if (selected) {
-      setLogContent(selected.content);
+    const id = e.target.value;
+    const log = SAMPLE_LOGS.find(l => l.id === id);
+    if (log) {
+      setSelectedLogId(id);
+      setLogContent(log.content);
     }
   };
 
@@ -27,10 +32,10 @@ export const LogInput: React.FC<LogInputProps> = ({ logContent, setLogContent, o
         <div>
           <label className="block text-xs font-medium text-white/50 uppercase mb-1.5">Select Sample Log</label>
           <select 
+            value={selectedLogId}
             onChange={handleSampleChange}
             className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
           >
-            <option value="">-- Choose a battle --</option>
             {SAMPLE_LOGS.map(log => (
               <option key={log.id} value={log.id}>{log.name}</option>
             ))}
@@ -48,7 +53,7 @@ export const LogInput: React.FC<LogInputProps> = ({ logContent, setLogContent, o
         </div>
 
         <button
-          onClick={onGenerate}
+          onClick={() => onGenerate(selectedLogId, logContent)}
           className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-lg shadow-blue-900/20"
         >
           <Wand2 className="w-5 h-5" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryScene } from '@/types';
+import { StoryScene } from '@/types/replay';
 import { SceneCard } from './SceneCard';
 import { LayoutGrid, List } from 'lucide-react';
 import { useState } from 'react';
@@ -21,7 +21,7 @@ export const StoryboardPanel: React.FC<StoryboardPanelProps> = ({
 
   if (scenes.length === 0) {
     return (
-      <div className="flex-grow flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-2xl bg-white/[0.02] p-12 text-center">
+      <div className="flex-grow flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-2xl bg-white/[0.02] p-12 text-center min-h-[400px]">
         <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4">
           <LayoutGrid className="w-8 h-8 text-white/20" />
         </div>

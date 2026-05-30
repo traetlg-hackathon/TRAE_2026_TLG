@@ -1,6 +1,6 @@
 import React from 'react';
-import { StoryScene } from '@/types';
-import { compilePixVersePrompt } from '@/lib/duel-logic';
+import { StoryScene } from '@/types/replay';
+import { compilePixVersePrompt } from '@/lib/compilePixVersePrompt';
 import { Sliders, Video, Palette, Zap, Clock } from 'lucide-react';
 
 interface SceneControlsProps {
@@ -11,7 +11,7 @@ interface SceneControlsProps {
 export const SceneControls: React.FC<SceneControlsProps> = ({ scene, onUpdate }) => {
   if (!scene) {
     return (
-      <div className="h-full flex items-center justify-center border border-dashed border-white/10 rounded-xl bg-white/5">
+      <div className="h-full flex items-center justify-center border border-dashed border-white/10 rounded-xl bg-white/5 min-h-[400px]">
         <p className="text-white/30 text-sm">Select a scene to edit its properties</p>
       </div>
     );
@@ -38,11 +38,11 @@ export const SceneControls: React.FC<SceneControlsProps> = ({ scene, onUpdate })
             Mood / Lighting
           </label>
           <div className="grid grid-cols-2 gap-2">
-            {['Dramatic', 'Cinematic', 'Dark', 'Epic', 'Mysterious', 'Vibrant'].map((mood) => (
+            {['dark', 'heroic', 'chaotic', 'cinematic'].map((mood) => (
               <button
                 key={mood}
                 onClick={() => handleChange('mood', mood)}
-                className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                className={`px-3 py-2 rounded-lg text-xs font-medium transition-all capitalize ${
                   scene.mood === mood 
                     ? 'bg-blue-600 text-white border-blue-500' 
                     : 'bg-black/40 text-white/60 border border-white/10 hover:border-white/20'
@@ -62,14 +62,12 @@ export const SceneControls: React.FC<SceneControlsProps> = ({ scene, onUpdate })
           <select
             value={scene.camera}
             onChange={(e) => handleChange('camera', e.target.value)}
-            className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 capitalize"
           >
-            <option>Close Up</option>
-            <option>Medium Shot</option>
-            <option>Wide Shot</option>
-            <option>Low Angle</option>
-            <option>High Angle</option>
-            <option>Dutch Angle</option>
+            <option value="close-up">Close Up</option>
+            <option value="dolly-in">Dolly In</option>
+            <option value="overhead">Overhead</option>
+            <option value="whip-pan">Whip Pan</option>
           </select>
         </div>
 
@@ -81,15 +79,15 @@ export const SceneControls: React.FC<SceneControlsProps> = ({ scene, onUpdate })
           <input
             type="range"
             min="1"
-            max="10"
+            max="5"
             step="1"
             value={scene.intensity}
             onChange={(e) => handleChange('intensity', parseInt(e.target.value))}
             className="w-full h-1.5 bg-black/40 rounded-lg appearance-none cursor-pointer accent-blue-600"
           />
           <div className="flex justify-between mt-2 px-1">
-            <span className="text-[10px] text-white/30">Low</span>
-            <span className="text-[10px] text-white/30">High</span>
+            <span className="text-[10px] text-white/30">1</span>
+            <span className="text-[10px] text-white/30">5</span>
           </div>
         </div>
 

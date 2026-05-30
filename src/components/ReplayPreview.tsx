@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryScene } from '@/types';
+import { StoryScene } from '@/types/replay';
 import { Play, SkipBack, SkipForward, Maximize2 } from 'lucide-react';
 
 interface ReplayPreviewProps {
