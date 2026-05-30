@@ -9,6 +9,10 @@ import ShareReplay from "./ShareReplay";
 import ExportPrompts from "./ExportPrompts";
 
 const VIDEO_SCENE_DURATION = 10;
+const PIXVERSE_POLL_INTERVAL_MS = 5000;
+const PIXVERSE_MAX_POLL_MINUTES = 10;
+const PIXVERSE_MAX_POLL_ATTEMPTS = Math.ceil((PIXVERSE_MAX_POLL_MINUTES * 60 * 1000) / PIXVERSE_POLL_INTERVAL_MS);
+const PIXVERSE_MAX_STATUS_ERRORS = 3;
 
 type SceneVideoState = {
   url: string | null;
@@ -28,6 +32,7 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
   const [isBatchRendering, setIsBatchRendering] = useState(false);
   const [batchRenderIndex, setBatchRenderIndex] = useState<number | null>(null);
   const [renderLog, setRenderLog] = useState<string[]>([]);
+  const [checkingResultSceneId, setCheckingResultSceneId] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const previewRef = useRef<HTMLDivElement | null>(null);
   const shouldAutoAdvanceRef = useRef(false);
@@ -57,6 +62,56 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
     const trimmed = url.trim();
     if (!trimmed) return null;
     return trimmed.replace(/^`|`$/g, "").replace(/^"|"$/g, "").trim();
+  };
+
+  const readPixVerseResult = async (videoId: string) => {
+    const resultRes = await fetch(`/api/pixverse/result/${videoId}`);
+    const resultJson = await resultRes.json().catch(() => null);
+    const status = resultJson?.status ?? resultJson?.data?.status ?? null;
+    const statusCode = resultJson?.statusCode ?? resultJson?.data?.status_code ?? null;
+    const url = normalizeUrl(resultJson?.videoUrl ?? resultJson?.data?.video_url ?? null);
+    const statusNormalized = typeof status === "string" ? status.toLowerCase() : null;
+
+    return { resultRes, resultJson, statusCode, statusNormalized, url };
+  };
+
+  const applyPixVerseResult = (
+    scene: StoryScene,
+    videoId: string,
+    sceneLabel: string,
+    result: Awaited<ReturnType<typeof readPixVerseResult>>,
+  ) => {
+    const { resultRes, resultJson, statusCode, statusNormalized, url } = result;
+
+    if (!resultRes.ok) {
+      const error = resultJson?.error ?? "Failed to fetch PixVerse result";
+      setVideoByScene((prev) => ({
+        ...prev,
+        [scene.id]: { url: null, jobId: videoId, state: "error", error },
+      }));
+      appendRenderLog(`${sceneLabel} failed: ${error}`);
+      return "error";
+    }
+
+    if ((statusNormalized === "completed" || statusCode === 1) && url) {
+      setVideoByScene((prev) => ({
+        ...prev,
+        [scene.id]: { url, jobId: videoId, state: "ready", error: null },
+      }));
+      appendRenderLog(`${sceneLabel} ready: ${url}`);
+      return "ready";
+    }
+
+    if (statusNormalized === "failed" || statusNormalized === "not_approved") {
+      setVideoByScene((prev) => ({
+        ...prev,
+        [scene.id]: { url: null, jobId: videoId, state: "error", error: "PixVerse job failed" },
+      }));
+      appendRenderLog(`${sceneLabel} failed: PixVerse job failed`);
+      return "failed";
+    }
+
+    return "pending";
   };
 
   const generateVideoForScene = async (scene: StoryScene, sceneIndex: number, totalScenes: number, batchToken: number) => {
@@ -94,57 +149,57 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
       [scene.id]: { url: null, jobId: videoId, state: "polling", error: null },
     }));
 
-    const maxAttempts = 30;
-    for (let i = 0; i < maxAttempts; i += 1) {
-      await new Promise((r) => setTimeout(r, 2000));
+    let statusErrorCount = 0;
+    for (let i = 0; i < PIXVERSE_MAX_POLL_ATTEMPTS; i += 1) {
+      await new Promise((r) => setTimeout(r, PIXVERSE_POLL_INTERVAL_MS));
       if (activeBatchTokenRef.current !== batchToken) return false;
 
-      const resultRes = await fetch(`/api/pixverse/result/${videoId}`);
-      const resultJson = await resultRes.json().catch(() => null);
-      const status = resultJson?.status ?? resultJson?.data?.status ?? null;
-      const statusCode = resultJson?.statusCode ?? resultJson?.data?.status_code ?? null;
-      const url = normalizeUrl(resultJson?.videoUrl ?? resultJson?.data?.video_url ?? null);
-      const statusNormalized = typeof status === "string" ? status.toLowerCase() : null;
-
-      if (!resultRes.ok) {
-        const error = resultJson?.error ?? "Failed to fetch PixVerse result";
-        if (activeBatchTokenRef.current !== batchToken) return false;
-        setVideoByScene((prev) => ({
-          ...prev,
-          [scene.id]: { url: null, jobId: videoId, state: "error", error },
-        }));
-        appendRenderLog(`${sceneLabel} failed: ${error}`);
-        return false;
+      const result = await readPixVerseResult(videoId);
+      if (!result.resultRes.ok) {
+        statusErrorCount += 1;
+        if (statusErrorCount < PIXVERSE_MAX_STATUS_ERRORS) continue;
       }
 
-      if ((statusNormalized === "completed" || statusCode === 1) && url) {
-        if (activeBatchTokenRef.current !== batchToken) return false;
-        setVideoByScene((prev) => ({
-          ...prev,
-          [scene.id]: { url, jobId: videoId, state: "ready", error: null },
-        }));
-        appendRenderLog(`${sceneLabel} ready: ${url}`);
+      const appliedStatus = applyPixVerseResult(scene, videoId, sceneLabel, result);
+      if (appliedStatus === "ready") {
         return true;
       }
-
-      if (statusNormalized === "failed" || statusNormalized === "not_approved") {
-        if (activeBatchTokenRef.current !== batchToken) return false;
-        setVideoByScene((prev) => ({
-          ...prev,
-          [scene.id]: { url: null, jobId: videoId, state: "error", error: "PixVerse job failed" },
-        }));
-        appendRenderLog(`${sceneLabel} failed: PixVerse job failed`);
+      if (appliedStatus === "failed" || appliedStatus === "error") {
         return false;
       }
+
+      statusErrorCount = 0;
     }
 
     if (activeBatchTokenRef.current !== batchToken) return false;
     setVideoByScene((prev) => ({
       ...prev,
-      [scene.id]: { url: null, jobId: videoId, state: "error", error: "PixVerse job timeout" },
+      [scene.id]: { url: null, jobId: videoId, state: "polling", error: null },
     }));
-    appendRenderLog(`${sceneLabel} failed: PixVerse job timeout`);
+    appendRenderLog(`${sceneLabel} still processing after ${PIXVERSE_MAX_POLL_MINUTES} minutes. Use Check Result to fetch it later.`);
     return false;
+  };
+
+  const handleCheckCurrentResult = async () => {
+    if (!currentScene || !currentVideoJobId || checkingResultSceneId) return;
+
+    const sceneLabel = `Scene ${currentSceneIndex + 1}/${scenes.length}`;
+    setCheckingResultSceneId(currentScene.id);
+    appendRenderLog(`${sceneLabel} checking PixVerse job ${currentVideoJobId}`);
+
+    try {
+      const result = await readPixVerseResult(currentVideoJobId);
+      const appliedStatus = applyPixVerseResult(currentScene, currentVideoJobId, sceneLabel, result);
+      if (appliedStatus === "pending") {
+        setVideoByScene((prev) => ({
+          ...prev,
+          [currentScene.id]: { url: null, jobId: currentVideoJobId, state: "polling", error: null },
+        }));
+        appendRenderLog(`${sceneLabel} still processing`);
+      }
+    } finally {
+      setCheckingResultSceneId(null);
+    }
   };
 
   const handleCreateAllVideos = async () => {
@@ -363,6 +418,15 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
             </div>
 
             <div className="flex items-center gap-4">
+              {currentVideoJobId && !currentVideoUrl && (
+                <button
+                  onClick={handleCheckCurrentResult}
+                  disabled={checkingResultSceneId === currentScene?.id}
+                  className="px-4 py-2 rounded-lg text-sm font-bold bg-white/10 text-white hover:bg-white/15 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {checkingResultSceneId === currentScene?.id ? "Checking…" : "Check Result"}
+                </button>
+              )}
               <button
                 onClick={handleCreateAllVideos}
                 disabled={scenes.length === 0 || isBatchRendering}
@@ -396,7 +460,7 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
               )}
               {currentVideoError && <div className="text-red-400">{currentVideoError}</div>}
               {!currentVideoError && currentVideoState === "polling" && (
-                <div className="text-white/40">Waiting for PixVerse result…</div>
+                <div className="text-white/40">Waiting for PixVerse result. Long renders can take several minutes.</div>
               )}
             </div>
           )}

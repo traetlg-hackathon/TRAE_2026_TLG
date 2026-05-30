@@ -5,6 +5,9 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
+/blob-report/
 
 # next.js
 /.next/
@@ -42,7 +45,12 @@ pnpm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# local tool / agent state
+.agents/
+.claude/
+.codex/
+CLAUDE.md
+
 # editors
 .idea/
 .vscode/
-CLAUDE.md
