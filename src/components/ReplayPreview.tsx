@@ -30,6 +30,7 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
   const [renderLog, setRenderLog] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const previewRef = useRef<HTMLDivElement | null>(null);
+  const shouldAutoAdvanceRef = useRef(false);
   const [videoByScene, setVideoByScene] = useState<Record<string, SceneVideoState>>({});
   const activeBatchTokenRef = useRef(0);
 
@@ -45,6 +46,7 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
     : Object.values(videoByScene).some((video) => video?.url)
       ? "Recreate All Videos"
       : "Create Video";
+  const timelineScenes = scenes.map((scene) => ({ ...scene, duration: VIDEO_SCENE_DURATION }));
 
   const appendRenderLog = (message: string) => {
     setRenderLog((prev) => [...prev, `[${new Date().toLocaleTimeString()}] ${message}`]);
@@ -173,10 +175,32 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
     }
   };
 
-  const goToScene = (index: number) => {
+  const goToScene = (index: number, options?: { keepAutoPlay?: boolean }) => {
     const nextIndex = Math.max(0, Math.min(index, scenes.length - 1));
     videoRef.current?.pause();
     setIsPlaying(false);
+    if (!options?.keepAutoPlay) shouldAutoAdvanceRef.current = false;
+    setCurrentSceneIndex(nextIndex);
+  };
+
+  const playCurrentVideo = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+    shouldAutoAdvanceRef.current = true;
+    await video.play().catch(() => setIsPlaying(false));
+  };
+
+  const handleVideoEnded = () => {
+    setIsPlaying(false);
+    if (!shouldAutoAdvanceRef.current) return;
+
+    const nextIndex = currentSceneIndex + 1;
+    const nextScene = scenes[nextIndex];
+    if (!nextScene) {
+      shouldAutoAdvanceRef.current = false;
+      return;
+    }
+
     setCurrentSceneIndex(nextIndex);
   };
 
@@ -191,11 +215,20 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
     if (!video) return;
 
     if (video.paused) {
-      await video.play().catch(() => setIsPlaying(false));
+      await playCurrentVideo();
     } else {
+      shouldAutoAdvanceRef.current = false;
       video.pause();
     }
   };
+
+  useEffect(() => {
+    if (!shouldAutoAdvanceRef.current) return;
+    if (!currentVideoUrl) return;
+    const video = videoRef.current;
+    if (!video) return;
+    video.play().catch(() => setIsPlaying(false));
+  }, [currentSceneIndex, currentVideoUrl]);
 
   const handleFullscreen = async () => {
     const target = videoRef.current ?? previewRef.current;
@@ -225,7 +258,7 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
                 playsInline
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
-                onEnded={() => setIsPlaying(false)}
+                onEnded={handleVideoEnded}
               />
             </div>
           ) : scenes.length > 0 ? (
@@ -380,7 +413,7 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
           )}
 
           <Timeline
-            scenes={scenes}
+            scenes={timelineScenes}
             currentIndex={currentSceneIndex}
             onSelect={goToScene}
             totalDuration={scenes.length * VIDEO_SCENE_DURATION}

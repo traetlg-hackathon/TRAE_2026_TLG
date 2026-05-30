@@ -1,8 +1,7 @@
 import React from 'react';
 import { StoryScene } from '@/types/replay';
 import { SceneCard } from './SceneCard';
-import { LayoutGrid, List } from 'lucide-react';
-import { useState } from 'react';
+import { Clock, LayoutGrid, MousePointer2 } from 'lucide-react';
 
 interface StoryboardPanelProps {
   scenes: StoryScene[];
@@ -11,14 +10,14 @@ interface StoryboardPanelProps {
   onSelectScene: (id: string) => void;
 }
 
-export const StoryboardPanel: React.FC<StoryboardPanelProps> = ({ 
-  scenes, 
-  onUpdateScene, 
-  selectedSceneId, 
-  onSelectScene 
-}) => {
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+const RENDER_DURATION_PER_SCENE = 10;
 
+export const StoryboardPanel: React.FC<StoryboardPanelProps> = ({
+  scenes,
+  onUpdateScene,
+  selectedSceneId,
+  onSelectScene
+}) => {
   if (scenes.length === 0) {
     return (
       <div className="flex-grow flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-2xl bg-white/[0.02] p-12 text-center min-h-[400px]">
@@ -33,41 +32,34 @@ export const StoryboardPanel: React.FC<StoryboardPanelProps> = ({
     );
   }
 
-  const totalDuration = scenes.reduce((acc, scene) => acc + scene.duration, 0);
+  const totalDuration = scenes.length * RENDER_DURATION_PER_SCENE;
 
   return (
-    <div className="flex-grow flex flex-col gap-4">
-      <div className="flex items-center justify-between bg-white/5 p-4 rounded-xl border border-white/10">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
+    <div className="flex-grow flex flex-col gap-4 min-h-0">
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+        <div className="flex items-start gap-4">
+          <div className="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20">
             <LayoutGrid className="w-5 h-5 text-blue-400" />
-            <h2 className="text-lg font-semibold text-white">Storyboard Editor</h2>
           </div>
-          <div className="h-4 w-[1px] bg-white/10" />
-          <div className="text-xs font-medium text-white/50 uppercase">
-            {scenes.length} Scenes • <span className="text-blue-400">{totalDuration}s Total</span>
+          <div>
+            <h2 className="text-xl font-semibold text-white">Storyboard Editor</h2>
+            <p className="text-sm text-white/45 mt-1">Readable scene list. Select a scene, then edit details in Scene Controls.</p>
           </div>
         </div>
-        
-        <div className="flex bg-black/40 p-1 rounded-lg border border-white/5">
-          <button 
-            onClick={() => setViewMode('grid')}
-            className={`p-1.5 rounded-md transition-all ${viewMode === 'grid' ? 'bg-white/10 text-white' : 'text-white/40 hover:text-white/60'}`}
-          >
-            <LayoutGrid className="w-4 h-4" />
-          </button>
-          <button 
-            onClick={() => setViewMode('list')}
-            className={`p-1.5 rounded-md transition-all ${viewMode === 'list' ? 'bg-white/10 text-white' : 'text-white/40 hover:text-white/60'}`}
-          >
-            <List className="w-4 h-4" />
-          </button>
+
+        <div className="flex flex-wrap gap-2">
+          <div className="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-black/30 px-3 py-2 text-xs font-bold uppercase tracking-wider text-white/60">
+            <MousePointer2 className="w-3.5 h-3.5 text-blue-400" />
+            {scenes.length} scenes
+          </div>
+          <div className="inline-flex items-center gap-2 rounded-xl border border-blue-500/20 bg-blue-500/10 px-3 py-2 text-xs font-bold uppercase tracking-wider text-blue-300">
+            <Clock className="w-3.5 h-3.5" />
+            {RENDER_DURATION_PER_SCENE}s each / {totalDuration}s total
+          </div>
         </div>
       </div>
 
-      <div className={`grid gap-4 overflow-y-auto max-h-[600px] pr-2 custom-scrollbar ${
-        viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'
-      }`}>
+      <div className="flex flex-col gap-3 overflow-y-auto max-h-[70vh] pr-2 custom-scrollbar pb-1">
         {scenes.map((scene) => (
           <SceneCard
             key={scene.id}

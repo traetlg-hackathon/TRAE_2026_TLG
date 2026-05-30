@@ -54,31 +54,30 @@ export default function Home() {
       <div className="flex-grow container mx-auto px-4 py-8 flex flex-col gap-8">
         {/* Top Section: Input and Editor */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left: Log Input (4 cols to match origin/main layout width) */}
           <div className="lg:col-span-4 h-full">
-            <LogInput 
-              onGenerate={handleGenerate} 
+            <LogInput
+              onGenerate={handleGenerate}
             />
           </div>
 
-          {/* Middle: Storyboard Editor (5 cols) */}
-          <div className="lg:col-span-5 h-full flex flex-col">
-            <StoryboardPanel 
-              scenes={scenes} 
+          <div className="lg:col-span-8 h-full flex flex-col">
+            <StoryboardPanel
+              scenes={scenes}
               onUpdateScene={handleUpdateScene}
               selectedSceneId={selectedSceneId}
               onSelectScene={setSelectedSceneId}
             />
           </div>
+        </div>
 
-          {/* Right: Scene Controls (3 cols) */}
-          <div className="lg:col-span-3 h-full">
-            <SceneControls 
+        {scenes.length > 0 && (
+          <div className="w-full">
+            <SceneControls
               scene={selectedScene}
               onUpdate={handleUpdateScene}
             />
           </div>
-        </div>
+        )}
 
         {actions.length > 0 && (
           <ActionEditor

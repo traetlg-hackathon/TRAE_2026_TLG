@@ -8,6 +8,9 @@ test("creates all scene videos and controls preview scenes", async ({ page }) =>
 
   await page.getByRole("button", { name: /generate storyboard/i }).click();
   await expect(page.getByText("Live Replay Preview")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Storyboard Editor" })).toBeVisible();
+  await expect(page.getByText("Readable scene list. Select a scene, then edit details in Scene Controls.")).toBeVisible();
+  await expect(page.getByText("10s each / 50s total")).toBeVisible();
   await expect(page.getByText(/Scene 1 \/ 5:/).first()).toBeVisible();
 
   await page.getByRole("button", { name: "Preview create video" }).click();
@@ -31,4 +34,8 @@ test("creates all scene videos and controls preview scenes", async ({ page }) =>
   await page.getByRole("button", { name: "Preview previous scene" }).click();
   await expect(page.getByText(/Scene 1 \/ 5:/).first()).toBeVisible();
   await expect(page.locator("video")).toBeVisible();
+
+  await page.getByRole("button", { name: "Preview play video" }).click();
+  await page.locator("video").evaluate((node: HTMLVideoElement) => node.dispatchEvent(new Event("ended", { bubbles: true })));
+  await expect(page.getByText(/Scene 2 \/ 5:/).first()).toBeVisible();
 });
