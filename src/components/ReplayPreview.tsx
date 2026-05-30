@@ -49,6 +49,10 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
     currentVideoUrl && currentScene
       ? `/api/video-download?url=${encodeURIComponent(currentVideoUrl)}&filename=${encodeURIComponent(`duelcut-scene-${currentSceneIndex + 1}-${currentScene.id}.mp4`)}`
       : null;
+  const currentPreviewVideoHref =
+    currentVideoUrl && currentScene
+      ? `/api/video-download?url=${encodeURIComponent(currentVideoUrl)}&filename=${encodeURIComponent(`duelcut-scene-${currentSceneIndex + 1}-${currentScene.id}.mp4`)}&disposition=inline`
+      : null;
   const isCurrentSceneRendering = currentVideoState === "submitting" || currentVideoState === "polling";
   const createButtonLabel = isBatchRendering
     ? `Rendering ${batchRenderIndex == null ? 0 : batchRenderIndex + 1}/${scenes.length}…`
@@ -97,7 +101,9 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
       return "error";
     }
 
-    if ((statusNormalized === "completed" || statusCode === 1) && url) {
+    const hasPlayableVideoUrl = url && (statusNormalized === "completed" || statusCode === 1);
+
+    if (hasPlayableVideoUrl) {
       setVideoByScene((prev) => ({
         ...prev,
         [scene.id]: { url, jobId: videoId, state: "ready", error: null },
@@ -136,7 +142,11 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
     const json = await res.json().catch(() => null);
     const videoId = json?.videoId as string | undefined;
     if (!res.ok || !videoId) {
-      const error = json?.error ?? "Failed to submit PixVerse job";
+      const error =
+        json?.error ??
+        (res.status === 404
+          ? "PixVerse API route not found. Restart the correct Next dev server for this project."
+          : "Failed to submit PixVerse job");
       if (activeBatchTokenRef.current !== batchToken) return false;
       setVideoByScene((prev) => ({
         ...prev,
@@ -307,12 +317,12 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes, autoRender
         <div ref={previewRef} className="aspect-video bg-neutral-900 relative flex items-center justify-center group">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-          {currentVideoUrl ? (
+          {currentPreviewVideoHref ? (
             <div className="w-full h-full">
               <video
                 ref={videoRef}
                 className="w-full h-full object-cover"
-                src={currentVideoUrl}
+                src={currentPreviewVideoHref}
                 controls
                 playsInline
                 onPlay={() => setIsPlaying(true)}

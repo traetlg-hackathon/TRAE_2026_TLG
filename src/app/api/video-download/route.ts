@@ -25,6 +25,7 @@ export async function GET(req: Request) {
   const requestUrl = new URL(req.url);
   const source = requestUrl.searchParams.get("url");
   const filename = sanitizeFilename(requestUrl.searchParams.get("filename"));
+  const disposition = requestUrl.searchParams.get("disposition") === "inline" ? "inline" : "attachment";
 
   if (!source) {
     return NextResponse.json({ error: "Missing video url" }, { status: 400 });
@@ -42,10 +43,14 @@ export async function GET(req: Request) {
   }
 
   if (process.env.PLAYWRIGHT_MOCK_PIXVERSE === "1") {
+    if (disposition === "inline") {
+      return NextResponse.redirect(videoUrl);
+    }
+
     return new Response("mock video download", {
       headers: {
         "Content-Type": "video/mp4",
-        "Content-Disposition": `attachment; filename="${filename}"`,
+        "Content-Disposition": `${disposition}; filename="${filename}"`,
         "Cache-Control": "no-store",
       },
     });
@@ -61,7 +66,7 @@ export async function GET(req: Request) {
 
   const headers = new Headers({
     "Content-Type": upstream.headers.get("content-type") ?? "video/mp4",
-    "Content-Disposition": `attachment; filename="${filename}"`,
+    "Content-Disposition": `${disposition}; filename="${filename}"`,
     "Cache-Control": "no-store",
   });
   const contentLength = upstream.headers.get("content-length");

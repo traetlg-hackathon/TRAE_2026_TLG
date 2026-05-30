@@ -4,6 +4,11 @@ import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 
+const summarizeCliError = (fallback: string, stderr: string | null, stdout: string | null) => {
+  const detail = stderr?.trim() || stdout?.trim();
+  return detail ? `${fallback}: ${detail}` : fallback;
+};
+
 export async function GET(
   _req: Request,
   { params }: { params: { videoId: string } },
@@ -39,7 +44,7 @@ export async function GET(
     const stderr = typeof e?.stderr === "string" ? e.stderr : null;
     const stdout = typeof e?.stdout === "string" ? e.stdout : null;
     return NextResponse.json(
-      { error: "PixVerse CLI failed", code, stderr, stdout },
+      { error: summarizeCliError("PixVerse CLI failed", stderr, stdout), code, stderr, stdout },
       { status: 502 },
     );
   }
