@@ -14,6 +14,72 @@ interface ReplayPreviewProps {
 
 export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes }) => {
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [videoJobId, setVideoJobId] = useState<string | null>(null);
+  const [videoState, setVideoState] = useState<
+    "idle" | "submitting" | "polling" | "ready" | "error"
+  >("idle");
+  const [videoError, setVideoError] = useState<string | null>(null);
+
+  const currentScene = scenes[currentSceneIndex] ?? null;
+
+  const handleGenerateVideo = async () => {
+    if (!currentScene) return;
+
+    setVideoError(null);
+    setVideoUrl(null);
+    setVideoJobId(null);
+    setVideoState("submitting");
+
+    const res = await fetch("/api/pixverse/text", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: currentScene.prompt, duration: 5 }),
+    });
+
+    const json = await res.json().catch(() => null);
+    const videoId = json?.videoId as string | undefined;
+    if (!res.ok || !videoId) {
+      setVideoState("error");
+      setVideoError(json?.error ?? "Failed to submit PixVerse job");
+      return;
+    }
+
+    setVideoJobId(videoId);
+    setVideoState("polling");
+
+    const maxAttempts = 30;
+    for (let i = 0; i < maxAttempts; i += 1) {
+      await new Promise((r) => setTimeout(r, 2000));
+
+      const resultRes = await fetch(`/api/pixverse/result/${videoId}`);
+      const resultJson = await resultRes.json().catch(() => null);
+      const data = resultJson?.data;
+      const status = data?.Resp?.status;
+      const url = data?.Resp?.url ?? data?.Resp?.result_url ?? null;
+
+      if (!resultRes.ok) {
+        setVideoState("error");
+        setVideoError(resultJson?.error ?? "Failed to fetch PixVerse result");
+        return;
+      }
+
+      if (status === 1 && url) {
+        setVideoUrl(url);
+        setVideoState("ready");
+        return;
+      }
+
+      if (status === 2 || status === 3) {
+        setVideoState("error");
+        setVideoError("PixVerse job failed");
+        return;
+      }
+    }
+
+    setVideoState("error");
+    setVideoError("PixVerse job timeout");
+  };
 
   return (
     <div className="flex flex-col gap-6">
@@ -22,7 +88,15 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes }) => {
         <div className="aspect-video bg-neutral-900 relative flex items-center justify-center group">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           
-          {scenes.length > 0 ? (
+          {videoUrl ? (
+            <div className="w-full h-full">
+              <video
+                className="w-full h-full object-cover"
+                src={videoUrl}
+                controls
+              />
+            </div>
+          ) : scenes.length > 0 ? (
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:scale-110 transition-transform shadow-xl shadow-blue-900/40">
                 <Play className="w-8 h-8 text-white fill-white ml-1" />
@@ -59,11 +133,35 @@ export const ReplayPreview: React.FC<ReplayPreviewProps> = ({ scenes }) => {
             </div>
 
             <div className="flex items-center gap-4">
+              <button
+                onClick={handleGenerateVideo}
+                disabled={!currentScene || videoState === "submitting" || videoState === "polling"}
+                className="px-4 py-2 rounded-lg text-sm font-bold bg-blue-600 text-white hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                {videoState === "submitting"
+                  ? "Submitting…"
+                  : videoState === "polling"
+                    ? "Rendering…"
+                    : "Generate Video"}
+              </button>
               <ShareReplay />
               <ExportPrompts scenes={scenes} />
               <div className="text-sm font-mono text-white/60">00:00 / 00:00</div>
             </div>
           </div>
+          {(videoError || videoJobId) && (
+            <div className="mb-4 text-xs">
+              {videoJobId && (
+                <div className="text-white/50">
+                  PixVerse job: <span className="font-mono text-white/70">{videoJobId}</span>
+                </div>
+              )}
+              {videoError && <div className="text-red-400">{videoError}</div>}
+              {!videoError && videoState === "polling" && (
+                <div className="text-white/40">Waiting for PixVerse result…</div>
+              )}
+            </div>
+          )}
 
           {/* Timeline Visual */}
           <Timeline 
