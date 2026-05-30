@@ -1,0 +1,833 @@
+[0:00] Affect hosted 2 out of 3 Match in Unlimited (Unrated)
+[0:00] Accepted TheBoyDuddus into duel
+[0:12] Chose to go first
+[0:12] Drew Destiny HERO - Plasma
+[0:12] Drew Metamorphosis
+[0:12] Drew Destiny Draw
+[0:12] Drew Phoenix Wing Wind Blast
+[0:12] Drew Solemn Judgment
+[0:12] Drew Premature Burial
+[0:12] Drew Mystical Space Typhoon
+[0:12] Drew Mitsurugi no Miko, Wousu
+[0:12] Drew Snake Rain
+[0:12] Drew Offering to the Snake Deity
+[0:22] Drew Sinister Serpent
+[0:24] Shuffled hand
+[0:26] Activated Snake Rain from hand (3/6) to S-3
+[0:28] Sent Sinister Serpent from hand (1/5) to GY
+[0:29] Viewed deck
+[0:31] Sent Sinister Serpent from Deck to GY
+[0:35] Sent Zohah, the Ogdoadic Boundless from Deck to GY
+[0:36] Sent Flogos, the Ogdoadic Boundless from Deck to GY
+[0:36] Viewed Opponent's Graveyard
+[0:37] Stopped viewing Opponent's Graveyard
+[0:38] Sent Zohah, the Ogdoadic Boundless from Deck to GY
+[0:39] Stopped viewing Deck
+[0:39] Shuffled deck
+[0:41] Sent Snake Rain from S-3 to GY
+[0:42] Viewed Opponent's Graveyard
+[0:42] Set Offering to the Snake Deity from hand (3/4) to S-3
+[0:43] Stopped viewing Opponent's Graveyard
+[0:44] Set Mystical Space Typhoon from hand (1/3) to S-4
+[0:45] Ended turn
+----------------(Turn 1)-----------------
+[0:45] Entered Draw Phase
+[0:45] Drew Destiny HERO - Disk Commander
+[0:47] Shuffled hand
+[0:48] Entered Standby Phase
+[0:49] Entered Main Phase 1
+[0:50] Activated Destiny Draw from hand (1/6) to S-3
+[0:52] Sent Destiny HERO - Disk Commander from hand (3/5) to GY
+[0:56] Signaled OK
+[0:57] Drew Reinforcement of the Army
+[0:58] Drew Metamorphosis
+[0:59] Shuffled hand
+[1:00] Sent Destiny Draw from S-3 to GY
+[1:03] Activated Reinforcement of the Army from hand (4/6) to S-3
+[1:04] Viewed Opponent's Graveyard
+[1:05] Stopped viewing Opponent's Graveyard
+[1:06] Signaled OK
+[1:06] Viewed deck
+[1:08] Viewed GY
+[1:09] Stopped viewing GY
+[1:11] Added Elemental HERO Stratos from Deck to hand
+[1:12] Stopped viewing Deck
+[1:12] Shuffled deck
+[1:13] Shuffled hand
+[1:14] Sent Reinforcement of the Army from S-3 to GY
+[1:17] Normal Summoned Elemental HERO Stratos from hand (2/6) to M-3
+[1:18] Declared effect of Elemental HERO Stratos in M-3
+[1:20] Signaled OK
+[1:21] Viewed deck
+[1:27] Added Destiny HERO - Malicious from Deck to hand
+[1:28] Stopped viewing Deck
+[1:28] Shuffled deck
+[1:30] Entered Battle Phase
+[1:31] Attacked directly with Elemental HERO Stratos in M-3
+[1:36] Viewed Opponent's Graveyard
+[1:37] Stopped viewing Opponent's Graveyard
+[1:38] Lost 1800 LP
+[1:41] Entered Main Phase 2
+[1:42] Viewed Opponent's Graveyard
+[1:48] Stopped viewing Opponent's Graveyard
+[1:57] Set Solemn Judgment from hand (1/6) to S-3
+[1:58] Set Phoenix Wing Wind Blast from hand (3/5) to S-4
+[1:59] Ended turn
+[2:00] Sent Set Mystical Space Typhoon from S-4 to GY
+[2:01] Pointed at Set Solemn Judgment in S-3
+[2:02] Sent Set Solemn Judgment from S-3 to GY
+----------------(Turn 2)-----------------
+[2:03] Entered Draw Phase
+[2:03] Drew Dark Alligator
+[2:04] Shuffled hand
+[2:05] Entered Standby Phase
+[2:06] Viewed GY
+[2:11] Returned Sinister Serpent from GY to hand
+[2:12] Returned Sinister Serpent from GY to hand
+[2:12] Stopped viewing GY
+[2:15] Shuffled hand
+[2:16] Entered Main Phase 1
+[2:18] Shuffled hand
+[2:28] Sent Sinister Serpent from hand (4/5) to GY
+[2:30] Special Summoned Mitsurugi no Miko, Wousu from hand (3/4) to M-3 (ATK)
+[2:31] Shuffled hand
+[2:32] Sent Elemental HERO Stratos from M-3 to GY
+[2:37] Sent Mitsurugi no Miko, Wousu from M-3 to GY
+[2:38] Normal Summoned Dark Alligator from hand (1/3) to M-3
+[2:41] Viewed Opponent's Graveyard
+[2:42] Stopped viewing Opponent's Graveyard
+[2:42] Sent Sinister Serpent from hand (1/2) to GY
+[2:43] Signaled OK
+[2:43] Viewed GY
+[2:43] Shuffled hand
+[2:44] Returned Mitsurugi no Miko, Wousu from GY to hand
+[2:45] Stopped viewing GY
+[2:46] Summoned a token in M-4
+[2:47] Changed "Token" in M-4 to ATK
+[2:49] Changed stats of "Token" in M-4 to 2000/0
+[2:51] Viewed GY
+[2:52] Stopped viewing GY
+[2:53] Entered Battle Phase
+[2:53] Attacked directly with "Token" in M-4
+[2:56] Viewed Opponent's Graveyard
+[3:00] Stopped viewing Opponent's Graveyard
+[3:03] Lost 2000 LP
+[3:04] Attacked directly with Dark Alligator in M-3
+[3:06] Activated Set Phoenix Wing Wind Blast in S-4
+[3:07] Sent Destiny HERO - Malicious from hand (2/4) to GY
+[3:08] Pointed at Dark Alligator in M-3
+[3:10] Returned Dark Alligator from M-3 to top of deck
+[3:11] Sent Phoenix Wing Wind Blast from S-4 to GY
+[3:12] Viewed Opponent's Graveyard
+[3:13] Entered Main Phase 2
+[3:17] Stopped viewing Opponent's Graveyard
+[3:17] Ended turn
+[3:19] Viewed GY
+[3:20] Stopped viewing GY
+----------------(Turn 3)-----------------
+[3:21] Entered Draw Phase
+[3:21] Drew Graceful Charity
+[3:22] Shuffled hand
+[3:24] Entered Standby Phase
+[3:25] Entered Main Phase 1
+[3:25] Viewed GY
+[3:27] Banished Destiny HERO - Malicious from GY
+[3:28] Stopped viewing GY
+[3:31] Viewed deck
+[3:33] Special Summoned Destiny HERO - Malicious from Deck to M-3 (DEF)
+[3:35] Stopped viewing Deck
+[3:35] Shuffled deck
+[3:36] Viewed GY
+[3:39] Stopped viewing GY
+[3:40] Viewed Opponent's Graveyard
+[3:41] Stopped viewing Opponent's Graveyard
+[3:44] Activated Metamorphosis from hand (3/4) to S-3
+[3:44] Sent Destiny HERO - Malicious from M-3 to GY
+[3:53] Viewed Extra Deck
+[3:56] Special Summoned Ryu Senshi from Extra Deck to M-3 (ATK)
+[3:57] Stopped viewing Extra Deck
+[3:58] Sent Metamorphosis from S-3 to GY
+[4:04] Signaled OK
+[4:05] Viewed GY
+[4:06] Thinking
+[4:07] Stopped viewing GY
+[4:08] Viewed Opponent's Graveyard
+[4:09] Stopped viewing Opponent's Graveyard
+[4:12] Signaled OK
+[4:14] Viewed GY
+[4:16] Banished Destiny HERO - Malicious from GY
+[4:17] Stopped viewing GY
+[4:19] Viewed deck
+[4:21] Special Summoned Destiny HERO - Malicious from Deck to M-4 (DEF)
+[4:21] Stopped viewing Deck
+[4:21] Shuffled deck
+[4:24] Activated Metamorphosis from hand (2/3) to S-3
+[4:25] Sent Destiny HERO - Malicious from M-4 to GY
+[4:27] Viewed Extra Deck
+[4:28] Special Summoned Dark Blade the Dragon Knight from Extra Deck to M-4 (ATK)
+[4:29] Stopped viewing Extra Deck
+[4:31] Sent Metamorphosis from S-3 to GY
+[4:40] Entered Battle Phase
+[4:41] Attacked "Token" in M-4 with "Dark Blade the Dragon Knight" in M-4
+[4:49] Lost 200 LP
+[4:50] Removed "Token" from M-4
+[4:51] Declared effect of Dark Blade the Dragon Knight in M-4
+[4:52] Viewed Opponent's Graveyard
+[4:55] Banished Sinister Serpent from GY
+[4:55] Banished Sinister Serpent from GY
+[4:57] Banished Flogos, the Ogdoadic Boundless from GY
+[4:59] Stopped viewing Opponent's Graveyard
+[5:00] Viewed Banished
+[5:01] Stopped viewing Banished
+[5:02] Attacked directly with Ryu Senshi in M-3
+[5:04] Lost 2000 LP
+[5:06] Entered Main Phase 2
+[5:06] Viewed GY
+[5:07] Viewed GY
+[5:07] Stopped viewing GY
+[5:10] Stopped viewing GY
+[5:17] Viewed Opponent's Graveyard
+[5:25] Stopped viewing Opponent's Graveyard
+[5:26] Viewed GY
+[5:27] Stopped viewing GY
+[5:29] Activated Graceful Charity from hand (1/2) to S-3
+[5:32] Signaled OK
+[5:33] Viewed Opponent's Graveyard
+[5:34] Stopped viewing Opponent's Graveyard
+[5:35] Drew Torrential Tribute
+[5:35] Drew Cyber Dragon
+[5:36] Drew Witch of the Black Forest
+[5:37] Shuffled hand
+[5:56] Viewed GY
+[5:59] Viewed Opponent's Banished
+[5:59] Stopped viewing Opponent's Banished
+[5:59] Viewed Opponent's Graveyard
+[5:59] Stopped viewing Opponent's Graveyard
+[6:00] Stopped viewing GY
+[6:03] Sent Destiny HERO - Plasma from hand (4/4) to GY
+[6:05] Sent Cyber Dragon from hand (3/3) to GY
+[6:06] Sent Graceful Charity from S-3 to GY
+[6:07] Viewed GY
+[6:09] Stopped viewing GY
+[6:20] Viewed GY
+[6:21] Stopped viewing GY
+[6:22] Viewed GY
+[6:23] Stopped viewing GY
+[6:28] Viewed GY
+[6:30] Stopped viewing GY
+[6:31] Viewed Opponent's Graveyard
+[6:32] Stopped viewing Opponent's Graveyard
+[6:34] Viewed GY
+[6:35] Thinking
+[6:42] Stopped viewing GY
+[6:42] Viewed Opponent's Graveyard
+[6:45] Stopped viewing Opponent's Graveyard
+[6:45] Viewed GY
+[6:52] Shuffled hand
+[6:53] Stopped viewing GY
+[6:57] Viewed GY
+[6:59] Stopped viewing GY
+[7:00] Viewed GY
+[7:01] Shuffled hand
+[7:02] Stopped viewing GY
+[7:03] Set Witch of the Black Forest from hand (2/2) to M-2
+[7:04] Set Torrential Tribute from hand (1/1) to S-3
+[7:05] Ended turn
+[7:06] Viewed Opponent's Graveyard
+[7:11] Stopped viewing Opponent's Graveyard
+----------------(Turn 4)-----------------
+[7:12] Entered Draw Phase
+[7:12] Drew Dark Alligator
+[7:13] Viewed GY
+[7:13] Shuffled hand
+[7:15] Stopped viewing GY
+[7:16] Activated Premature Burial from hand (3/3) to S-4
+[7:17] Lost 800 LP
+[7:18] Viewed Opponent's Graveyard
+[7:19] Stopped viewing Opponent's Graveyard
+[7:20] Signaled OK
+[7:21] Viewed GY
+[7:22] Signaled OK
+[7:23] Special Summoned Zohah, the Ogdoadic Boundless from GY to M-3 (ATK)
+[7:23] Stopped viewing GY
+[7:24] Thinking
+[7:25] Shuffled hand
+[7:36] Viewed Opponent's Graveyard
+[7:38] Stopped viewing Opponent's Graveyard
+[7:39] Thinking
+[7:40] Viewed GY
+[7:50] Stopped viewing GY
+[7:54] Viewed GY
+[8:01] Shuffled hand
+[8:01] Stopped viewing GY
+[8:02] Signaled OK
+[8:04] Sent Zohah, the Ogdoadic Boundless from M-3 to GY
+[8:05] Sent Premature Burial from S-4 to GY
+[8:06] Normal Summoned Dark Alligator from hand (2/2) to M-3
+[8:07] Summoned a token in M-4
+[8:09] Changed "Token" in M-4 to ATK
+[8:09] Thinking
+[8:11] Changed stats of "Token" in M-4 to 2000/0
+[8:12] Viewed GY
+[8:21] Stopped viewing GY
+[8:22] Signaled OK
+[8:30] Entered Battle Phase
+[8:31] Attacked "Ryu Senshi" in M-3 with "Token" in M-4
+[8:33] Sent Ryu Senshi from M-3 to GY
+[8:37] Removed "Token" from M-4
+[8:39] Attacked Dark Blade the Dragon Knight in M-4 with Dark Alligator in M-3
+[8:41] Sent Dark Blade the Dragon Knight from M-4 to GY
+[8:43] Lost 300 LP
+[8:46] Ended turn
+----------------(Turn 5)-----------------
+[8:47] Entered Draw Phase
+[8:47] Drew Cyber Dragon
+[8:51] Entered Standby Phase
+[8:51] Entered Main Phase 1
+[8:54] Viewed GY
+[8:56] Stopped viewing GY
+[8:57] Viewed GY
+[8:58] Stopped viewing GY
+[8:59] Ended turn
+----------------(Turn 6)-----------------
+[9:02] Entered Draw Phase
+[9:02] Drew Heavy Storm
+[9:04] Shuffled hand
+[9:08] Shuffled hand
+[9:14] Entered Main Phase 1
+[9:23] Viewed Opponent's Graveyard
+[9:24] Stopped viewing Opponent's Graveyard
+[9:26] Entered Battle Phase
+[9:27] Attacked Set card in M-2 with Dark Alligator in M-3
+[9:28] Sent Set Witch of the Black Forest from M-2 to GY
+[9:29] Viewed deck
+[9:34] Added Raiza the Storm Monarch from Deck to hand
+[9:35] Stopped viewing Deck
+[9:35] Shuffled deck
+[9:39] Ended turn
+----------------(Turn 7)-----------------
+[9:41] Entered Draw Phase
+[9:41] Drew Premature Burial
+[9:44] Shuffled hand
+[9:46] Entered Standby Phase
+[9:47] Viewed Opponent's Graveyard
+[9:47] Stopped viewing Opponent's Graveyard
+[9:47] Entered Main Phase 1
+[9:50] Viewed GY
+[9:51] Stopped viewing GY
+[10:07] Viewed GY
+[10:10] Stopped viewing GY
+[10:15] Special Summoned Cyber Dragon from hand (1/3) to M-3 (ATK)
+[10:17] Signaled OK
+[10:20] Sent Cyber Dragon from M-3 to GY
+[10:21] Normal Summoned Raiza the Storm Monarch from hand (1/2) to M-3
+[10:22] Declared effect of Raiza the Storm Monarch in M-3
+[10:22] Pointed at Dark Alligator in M-3
+[10:24] Activated Set Offering to the Snake Deity in S-3
+[10:24] Pointed at Dark Alligator in M-3
+[10:28] Signaled OK
+[10:28] Signaled OK
+[10:30] Sent Offering to the Snake Deity from S-3 to GY
+[10:30] Sent Set Torrential Tribute from S-3 to GY
+[10:31] Sent Dark Alligator from M-3 to GY
+[10:31] Sent Raiza the Storm Monarch from M-3 to GY
+[10:34] Viewed GY
+[10:50] Stopped viewing GY
+[10:51] Viewed Opponent's Graveyard
+[10:55] Stopped viewing Opponent's Graveyard
+[10:55] Viewed GY
+[11:03] Thinking
+[11:15] Shuffled hand
+[11:16] Shuffled hand
+[11:16] Shuffled hand
+[11:22] Stopped viewing GY
+[11:23] Viewed Opponent's Graveyard
+[11:24] Stopped viewing Opponent's Graveyard
+[11:25] Viewed GY
+[11:26] Stopped viewing GY
+[11:28] Viewed GY
+[11:30] Stopped viewing GY
+[11:31] Viewed GY
+[11:41] Stopped viewing GY
+[11:42] Viewed Opponent's Graveyard
+[12:11] Stopped viewing Opponent's Graveyard
+[12:11] Viewed Opponent's Graveyard
+[12:13] Stopped viewing Opponent's Graveyard
+[12:13] Viewed GY
+[12:19] Stopped viewing GY
+[12:20] Viewed Opponent's Graveyard
+[12:23] Stopped viewing Opponent's Graveyard
+[12:26] Shuffled hand
+[12:27] Activated Premature Burial from hand (1/1) to S-3
+[12:29] Lost 800 LP
+[12:30] Viewed GY
+[12:31] Shuffled hand
+[12:32] Pointed at Destiny HERO - Disk Commander from GY
+[12:34] Signaled OK
+[12:35] Special Summoned Destiny HERO - Disk Commander from GY to M-3 (ATK)
+[12:36] Stopped viewing GY
+[12:37] Shuffled hand
+[12:38] Declared effect of Destiny HERO - Disk Commander in M-3
+[12:39] Drew Treeborn Frog
+[12:40] Drew Chaos Sorcerer
+[12:42] Shuffled hand
+[12:43] Shuffled hand
+[12:45] Viewed GY
+[12:46] Stopped viewing GY
+[12:47] Entered Battle Phase
+[12:48] Attacked directly with Destiny HERO - Disk Commander in M-3
+[12:50] Viewed Opponent's Graveyard
+[12:50] Lost 300 LP
+[12:51] Stopped viewing Opponent's Graveyard
+[12:52] Entered Main Phase 2
+[12:52] Shuffled hand
+[12:54] Ended turn
+----------------(Turn 8)-----------------
+[12:55] Entered Draw Phase
+[12:55] Drew Offering to the Snake Deity
+[12:56] Shuffled hand
+[13:00] Entered Standby Phase
+[13:03] Entered Main Phase 1
+[13:04] Viewed GY
+[13:06] Stopped viewing GY
+[13:06] Viewed Opponent's Graveyard
+[13:08] Stopped viewing Opponent's Graveyard
+[13:13] Viewed Opponent's Graveyard
+[13:14] Viewed GY
+[13:16] Stopped viewing GY
+[13:27] Stopped viewing Opponent's Graveyard
+[13:28] Sent Heavy Storm from hand (3/3) to GY
+[13:28] Viewed GY
+[13:30] Returned Zohah, the Ogdoadic Boundless from GY to hand
+[13:31] Stopped viewing GY
+[13:33] Normal Summoned Zohah, the Ogdoadic Boundless from hand (1/3) to M-3
+[13:34] Entered Battle Phase
+[13:35] Attacked Destiny HERO - Disk Commander in M-3 with Zohah, the Ogdoadic Boundless in M-3
+[13:36] Sent Destiny HERO - Disk Commander from M-3 to GY
+[13:37] Sent Premature Burial from S-3 to GY
+[13:37] Set Offering to the Snake Deity from hand (1/2) to S-3
+[13:38] Ended turn
+[13:38] Lost 1200 LP
+----------------(Turn 9)-----------------
+[13:43] Entered Draw Phase
+[13:43] Drew Destiny HERO - Drawhand
+[13:46] Shuffled hand
+[13:49] Entered Standby Phase
+[13:49] Entered Main Phase 1
+[13:51] Viewed GY
+[13:57] Stopped viewing GY
+[13:59] Viewed GY
+[14:01] Stopped viewing GY
+[14:02] Viewed Opponent's Graveyard
+[14:17] Stopped viewing Opponent's Graveyard
+[14:17] Viewed Opponent's Graveyard
+[14:17] Viewed GY
+[14:18] Stopped viewing Opponent's Graveyard
+[14:18] Stopped viewing GY
+[14:26] Viewed Opponent's Graveyard
+[14:27] Stopped viewing Opponent's Graveyard
+[14:28] Viewed Opponent's Graveyard
+[14:30] Stopped viewing Opponent's Graveyard
+[14:33] Viewed GY
+[14:33] Stopped viewing GY
+[14:34] Normal Summoned Destiny HERO - Drawhand from hand (1/3) to M-3
+[14:35] Viewed Opponent's Graveyard
+[14:36] Stopped viewing Opponent's Graveyard
+[14:40] Signaled OK
+[14:41] Entered Battle Phase
+[14:42] Attacked Zohah, the Ogdoadic Boundless in M-3 with Destiny HERO - Drawhand in M-3
+[14:43] Sent Zohah, the Ogdoadic Boundless from M-3 to GY
+[14:44] Lost 100 LP
+[14:46] Entered Main Phase 2
+[14:47] Viewed GY
+[14:48] Stopped viewing GY
+[14:53] Ended turn
+----------------(Turn 10)----------------
+[14:53] Entered Draw Phase
+[14:53] Drew Graceful Charity
+[14:54] Shuffled hand
+[14:58] Shuffled hand
+[14:58] Shuffled hand
+[15:00] Activated Graceful Charity from hand (1/2) to S-4
+[15:01] Drew Return from the Different Dimension
+[15:02] Drew Phoenix Wing Wind Blast
+[15:02] Drew Evil Dragon Ananta
+[15:03] Shuffled hand
+[15:05] Sent Graceful Charity from S-4 to GY
+[15:06] Viewed GY
+[15:07] Stopped viewing GY
+[15:12] Viewed GY
+[15:13] Stopped viewing GY
+[15:15] Sent Phoenix Wing Wind Blast from hand (4/4) to GY
+[15:19] Viewed Opponent's Graveyard
+[15:19] Sent Mitsurugi no Miko, Wousu from hand (2/3) to GY
+[15:20] Stopped viewing Opponent's Graveyard
+[15:22] Viewed GY
+[15:24] Banished Mitsurugi no Miko, Wousu from GY
+[15:24] Viewed Opponent's Graveyard
+[15:26] Banished Zohah, the Ogdoadic Boundless from GY
+[15:26] Stopped viewing Opponent's Graveyard
+[15:27] Banished Dark Alligator from GY
+[15:28] Banished Zohah, the Ogdoadic Boundless from GY
+[15:29] Stopped viewing GY
+[15:31] Special Summoned Evil Dragon Ananta from hand (1/2) to M-3 (ATK)
+[15:33] Changed stats of Evil Dragon Ananta in M-3 to 2400/?
+[15:37] Entered Battle Phase
+[15:38] Attacked Destiny HERO - Drawhand in M-3 with Evil Dragon Ananta in M-3
+[15:39] Sent Destiny HERO - Drawhand from M-3 to GY
+[15:41] Lost 800 LP
+[15:43] Set Return from the Different Dimension from hand (1/1) to S-4
+[15:45] Sent Set Offering to the Snake Deity from S-3 to GY
+[15:45] Ended turn
+[15:48] Viewed Banished
+[15:49] Stopped viewing Banished
+----------------(Turn 11)----------------
+[15:55] Entered Draw Phase
+[15:55] Drew Reinforcement of the Army
+[15:57] Shuffled hand
+[16:00] Entered Standby Phase
+[16:01] Viewed Opponent's Graveyard
+[16:03] Stopped viewing Opponent's Graveyard
+[16:03] Viewed GY
+[16:07] Viewed Banished
+[16:08] Stopped viewing Banished
+[16:09] Viewed Opponent's Banished
+[16:10] Stopped viewing Opponent's Banished
+[16:11] Viewed Opponent's Graveyard
+[16:12] Stopped viewing GY
+[16:13] Viewed Opponent's Graveyard
+[16:14] Stopped viewing Opponent's Graveyard
+[16:15] Viewed GY
+[16:16] Stopped viewing GY
+[16:16] Stopped viewing Opponent's Graveyard
+[16:17] Viewed Opponent's Graveyard
+[16:17] Viewed GY
+[16:21] Stopped viewing Opponent's Graveyard
+[16:21] Stopped viewing GY
+[16:21] Viewed Opponent's Graveyard
+[16:24] Stopped viewing Opponent's Graveyard
+[16:25] Viewed Opponent's Banished
+[16:26] Stopped viewing Opponent's Banished
+[16:26] Viewed GY
+[16:28] Stopped viewing GY
+[16:29] Viewed Opponent's Graveyard
+[16:31] Stopped viewing Opponent's Graveyard
+[16:32] Viewed Opponent's Banished
+[16:36] Stopped viewing Opponent's Banished
+[16:36] Viewed GY
+[16:41] Stopped viewing GY
+[16:44] Viewed GY
+[16:45] Viewed Opponent's Graveyard
+[16:47] Stopped viewing Opponent's Graveyard
+[16:51] Stopped viewing GY
+[16:52] Entered Main Phase 1
+[16:55] Special Summoned Chaos Sorcerer from hand (1/3) to M-3 (ATK)
+[16:56] Viewed GY
+[16:59] Signaled OK
+[17:02] Banished Cyber Dragon from GY
+[17:04] Banished Dark Blade the Dragon Knight from GY
+[17:05] Stopped viewing GY
+[17:06] Pointed at Evil Dragon Ananta in M-3
+[17:10] Banished Evil Dragon Ananta from M-3
+[17:13] Viewed GY
+[17:21] Stopped viewing GY
+[17:24] Set Treeborn Frog from hand (1/2) to M-4
+[17:25] Ended turn
+----------------(Turn 12)----------------
+[17:26] Entered Draw Phase
+[17:26] Drew Mitsurugi no Miko, Wousu
+[17:28] Entered Standby Phase
+[17:30] Entered Main Phase 1
+[17:31] Viewed Opponent's Graveyard
+[17:31] Activated Set Return from the Different Dimension in S-4
+[17:32] Stopped viewing Opponent's Graveyard
+[17:34] Lost 1400 LP
+[17:35] Viewed Banished
+[17:35] Viewed Opponent's Banished
+[17:38] Special Summoned banished Dark Alligator (3/8) to M-3 (ATK)
+[17:40] Special Summoned banished Flogos, the Ogdoadic Boundless (5/7) to M-4 (ATK)
+[17:43] Stopped viewing Opponent's Banished
+[17:45] Special Summoned banished Zohah, the Ogdoadic Boundless (3/6) to M-2 (ATK)
+[17:46] Special Summoned banished Zohah, the Ogdoadic Boundless (2/5) to M-5 (ATK)
+[17:49] Special Summoned banished Sinister Serpent (3/4) to M-1 (ATK)
+[17:50] Stopped viewing Banished
+[17:55] Viewed GY
+[17:56] Stopped viewing GY
+[17:58] Drew Heavy Storm
+[17:59] Admitted defeat
+[18:53] Finished siding
+[20:01] Finished siding
+[20:02] Chose to go first
+[20:02] Drew Solemn Judgment
+[20:02] Drew Raiza the Storm Monarch
+[20:02] Drew Destiny HERO - Disk Commander
+[20:02] Drew Scapegoat
+[20:02] Drew D.D. Crow
+[20:02] Drew Mitsurugi no Miko, Wousu
+[20:02] Drew Snake Rain
+[20:02] Drew Gold Sarcophagus
+[20:02] Drew Call of the Haunted
+[20:02] Drew Premature Burial
+[20:09] Drew Graceful Charity
+[20:11] Shuffled hand
+[20:11] Shuffled hand
+[20:12] Entered Standby Phase
+[20:13] Entered Main Phase 1
+[20:16] Shuffled hand
+[20:17] Activated Graceful Charity from hand (6/6) to S-3
+[20:19] Drew Destiny HERO - Drawhand
+[20:20] Drew Witch of the Black Forest
+[20:20] Drew Scapegoat
+[20:22] Shuffled hand
+[20:23] Shuffled hand
+[20:30] Sent Destiny HERO - Disk Commander from hand (6/8) to GY
+[20:32] Sent Destiny HERO - Drawhand from hand (4/7) to GY
+[20:33] Sent Graceful Charity from S-3 to GY
+[20:35] Viewed Opponent's Graveyard
+[20:39] Stopped viewing Opponent's Graveyard
+[20:40] Shuffled hand
+[20:44] Set Witch of the Black Forest from hand (1/6) to M-3
+[20:48] Entered End Phase
+[20:50] Ended turn
+----------------(Turn 13)----------------
+[20:50] Entered Draw Phase
+[20:50] Drew Sinister Serpent
+[20:51] Shuffled hand
+[20:55] Entered Standby Phase
+[20:56] Viewed GY
+[20:57] Entered Main Phase 1
+[20:58] Special Summoned Destiny HERO - Drawhand from GY to M-4 (ATK)
+[20:59] Sent Gold Sarcophagus from hand (6/6) to GY
+[21:00] Stopped viewing GY
+[21:02] Signaled OK
+[21:03] Shuffled hand
+[21:09] Viewed deck
+[21:18] Banished Graceful Charity from Deck
+[21:19] Stopped viewing Deck
+[21:19] Shuffled deck
+[21:20] Shuffled hand
+[21:24] Activated Snake Rain from hand (3/5) to S-3
+[21:25] Sent Sinister Serpent from hand (3/4) to GY
+[21:27] Sent Snake Rain from S-3 to GY
+[21:28] Viewed deck
+[21:31] Sent Flogos, the Ogdoadic Boundless from Deck to GY
+[21:33] Viewed Opponent's Graveyard
+[21:35] Sent Sinister Serpent from Deck to GY
+[21:36] Stopped viewing Opponent's Graveyard
+[21:37] Sent Zohah, the Ogdoadic Boundless from Deck to GY
+[21:51] Viewed Opponent's Graveyard
+[21:52] Stopped viewing Opponent's Graveyard
+[21:56] Sent Dark Alligator from Deck to GY
+[21:57] Stopped viewing Deck
+[21:57] Shuffled deck
+[21:58] Viewed Opponent's Graveyard
+[21:59] Set Call of the Haunted from hand (2/3) to S-3
+[22:00] Stopped viewing Opponent's Graveyard
+[22:00] Ended turn
+[22:01] Shuffled hand
+----------------(Turn 14)----------------
+[22:01] Entered Draw Phase
+[22:01] Drew Call of the Haunted
+[22:02] Viewed GY
+[22:03] Stopped viewing GY
+[22:03] Shuffled hand
+[22:06] Entered Standby Phase
+[22:12] Entered Main Phase 1
+[22:16] Viewed GY
+[22:18] Stopped viewing GY
+[22:21] Shuffled hand
+[22:24] Shuffled hand
+[22:36] Sent Set Witch of the Black Forest from M-3 to GY
+[22:37] Normal Summoned Raiza the Storm Monarch from hand (4/6) to M-3
+[22:40] Pointed at Set Call of the Haunted in S-3
+[22:40] Viewed GY
+[22:41] Stopped viewing GY
+[22:42] Viewed Opponent's Graveyard
+[22:43] Stopped viewing Opponent's Graveyard
+[22:47] Viewed Opponent's Graveyard
+[22:49] Stopped viewing Opponent's Graveyard
+[22:56] Returned Set Call of the Haunted from S-3 to top of deck
+[22:58] Viewed GY
+[22:58] Stopped viewing GY
+[23:00] Viewed deck
+[23:04] Viewed Opponent's Graveyard
+[23:05] Added D.D. Crow from Deck to hand
+[23:06] Stopped viewing Opponent's Graveyard
+[23:06] Stopped viewing Deck
+[23:06] Shuffled deck
+[23:06] Viewed GY
+[23:07] Entered Battle Phase
+[23:08] Stopped viewing GY
+[23:13] Lost 1600 LP
+[23:13] Lost 2400 LP
+[23:15] Attacked directly with Raiza the Storm Monarch in M-3
+[23:17] Viewed Opponent's Graveyard
+[23:19] Stopped viewing Opponent's Graveyard
+[23:20] Entered Main Phase 2
+[23:21] Set Call of the Haunted from hand (4/6) to S-3
+[23:22] Set Solemn Judgment from hand (1/5) to S-4
+[23:25] Entered End Phase
+[23:25] Ended turn
+----------------(Turn 15)----------------
+[23:26] Entered Draw Phase
+[23:26] Drew Call of the Haunted
+[23:27] Shuffled hand
+[23:28] Entered Standby Phase
+[23:29] Viewed GY
+[23:31] Returned Sinister Serpent from GY to hand
+[23:32] Returned Sinister Serpent from GY to hand
+[23:33] Sent D.D. Crow from hand (3/4) to GY
+[23:34] Stopped viewing GY
+[23:34] Viewed Opponent's Graveyard
+[23:35] Sent D.D. Crow from hand (1/3) to GY
+[23:36] Stopped viewing Opponent's Graveyard
+[23:38] Banished Sinister Serpent from hand (4/5)
+[23:39] Banished Sinister Serpent from hand (4/4)
+[23:40] Shuffled hand
+[23:42] Viewed Opponent's Graveyard
+[23:44] Stopped viewing Opponent's Graveyard
+[23:46] Activated Premature Burial from hand (3/3) to S-3
+[23:48] Lost 800 LP
+[23:51] Entered Main Phase 1
+[23:52] Signaled OK
+[23:53] Viewed GY
+[24:10] Thinking
+[24:11] Stopped viewing GY
+[24:21] Activated Set Solemn Judgment in S-4
+[24:23] Sent Premature Burial from S-3 to GY
+[24:23] Lost 4000 LP
+[24:24] Set Call of the Haunted from hand (2/2) to S-3
+[24:25] Ended turn
+[24:25] Sent Solemn Judgment from S-4 to GY
+[24:36] Activated Set Call of the Haunted in S-3
+[24:38] Viewed GY
+[24:39] Special Summoned Destiny HERO - Disk Commander from GY to M-2 (ATK)
+[24:40] Stopped viewing GY
+[24:41] Signaled OK
+[24:46] Drew Chaos Sorcerer
+[24:46] Drew Reinforcement of the Army
+[24:48] Shuffled hand
+[24:49] Viewed GY
+[24:50] Stopped viewing GY
+----------------(Turn 16)----------------
+[24:52] Entered Draw Phase
+[24:52] Drew Premature Burial
+[24:55] Entered Standby Phase
+[24:57] Entered Main Phase 1
+[25:22] Viewed GY
+[25:23] Stopped viewing GY
+[25:24] Viewed Opponent's Graveyard
+[25:27] Stopped viewing Opponent's Graveyard
+[25:29] Viewed Opponent's Graveyard
+[25:33] Stopped viewing Opponent's Graveyard
+[25:34] Viewed GY
+[25:37] Stopped viewing GY
+[25:38] Activated Reinforcement of the Army from hand (3/5) to S-4
+[25:40] Signaled OK
+[25:41] Viewed deck
+[25:59] Added Elemental HERO Stratos from Deck to hand
+[26:01] Stopped viewing Deck
+[26:01] Shuffled deck
+[26:02] Sent Reinforcement of the Army from S-4 to GY
+[26:03] Viewed GY
+[26:04] Stopped viewing GY
+[26:07] Viewed Opponent's Graveyard
+[26:28] Thinking
+[26:31] Stopped viewing Opponent's Graveyard
+[26:31] Viewed GY
+[26:33] Stopped viewing GY
+[26:41] Normal Summoned Elemental HERO Stratos from hand (3/5) to M-5
+[26:43] Declared effect of Elemental HERO Stratos in M-5
+[26:47] Admitted defeat
+[26:59] Finished siding
+[27:27] Finished siding
+[27:28] Chose to go first
+[27:28] Drew Elemental HERO Stratos
+[27:28] Drew Call of the Haunted
+[27:28] Drew Destiny HERO - Plasma
+[27:28] Drew Heavy Storm
+[27:28] Drew Phoenix Wing Wind Blast
+[27:28] Drew Dark Alligator
+[27:28] Drew Dust Tornado
+[27:28] Drew Ipiria
+[27:28] Drew Snake Rain
+[27:28] Drew Dust Tornado
+[27:37] Drew Alien Stealthbuster
+[27:38] Shuffled hand
+[27:57] Activated Snake Rain from hand (5/6) to S-3
+[27:59] Sent Ipiria from hand (5/5) to GY
+[28:00] Viewed deck
+[28:00] Signaled OK
+[28:00] Sent Sinister Serpent from Deck to GY
+[28:01] Sent Sinister Serpent from Deck to GY
+[28:01] Sent Flogos, the Ogdoadic Boundless from Deck to GY
+[28:01] Sent Zohah, the Ogdoadic Boundless from Deck to GY
+[28:01] Stopped viewing Deck
+[28:01] Shuffled deck
+[28:02] Sent Snake Rain from S-3 to GY
+[28:03] Shuffled hand
+[28:03] Viewed Opponent's Graveyard
+[28:05] Stopped viewing Opponent's Graveyard
+[28:06] Set Alien Stealthbuster from hand (4/4) to M-3
+[28:07] Set Dust Tornado from hand (2/3) to S-3
+[28:08] Ended turn
+----------------(Turn 17)----------------
+[28:10] Entered Draw Phase
+[28:10] Drew Witch of the Black Forest
+[28:14] Shuffled hand
+[28:16] Viewed Opponent's Graveyard
+[28:25] Stopped viewing Opponent's Graveyard
+[28:26] Entered Standby Phase
+[28:27] Entered Main Phase 1
+[28:29] Viewed Opponent's Graveyard
+[28:44] Stopped viewing Opponent's Graveyard
+[28:46] Activated Heavy Storm from hand (2/6) to S-3
+[28:49] Sent Set Dust Tornado from S-3 to GY
+[28:49] Sent Heavy Storm from S-3 to GY
+[28:50] Shuffled hand
+[28:51] Normal Summoned Elemental HERO Stratos from hand (4/5) to M-3
+[28:52] Declared effect of Elemental HERO Stratos in M-3
+[28:53] Signaled OK
+[28:54] Viewed deck
+[29:08] Stopped viewing Deck
+[29:08] Shuffled deck
+[29:09] Viewed Opponent's Graveyard
+[29:10] Stopped viewing Opponent's Graveyard
+[29:12] Viewed deck
+[29:23] Added Destiny HERO - Disk Commander from Deck to hand
+[29:24] Stopped viewing Deck
+[29:24] Shuffled deck
+[29:25] Entered Battle Phase
+[29:26] Attacked Set card in M-3 with Elemental HERO Stratos in M-3
+[29:27] Sent Set Alien Stealthbuster from M-3 to GY
+[29:28] Pointed at Elemental HERO Stratos in M-3
+[29:30] Shuffled hand
+[29:31] Entered Main Phase 2
+[29:32] Viewed Opponent's Graveyard
+[29:33] Stopped viewing Opponent's Graveyard
+[29:34] Placed a counter on Elemental HERO Stratos in M-3 (now 1)
+[29:41] Viewed GY
+[29:42] Stopped viewing GY
+[29:43] Shuffled hand
+[29:43] Viewed Opponent's Graveyard
+[29:44] Shuffled hand
+[29:44] Stopped viewing Opponent's Graveyard
+[29:45] Shuffled hand
+[29:46] Set Phoenix Wing Wind Blast from hand (4/5) to S-3
+[29:48] Ended turn
+----------------(Turn 18)----------------
+[29:49] Entered Draw Phase
+[29:49] Drew Ipiria
+[29:49] Entered Standby Phase
+[29:50] Viewed GY
+[29:53] Returned Sinister Serpent from GY to hand
+[29:55] Returned Sinister Serpent from GY to hand
+[29:56] Stopped viewing GY
+[29:58] Signaled OK
+[30:00] Signaled OK
+[30:03] Entered Main Phase 1
+[30:04] Viewed GY
+[30:06] Banished Alien Stealthbuster from GY
+[30:07] Stopped viewing GY
+[30:07] Pointed at Elemental HERO Stratos in M-3
+[30:08] Sent Elemental HERO Stratos from M-3 to GY

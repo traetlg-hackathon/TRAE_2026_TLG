@@ -8,6 +8,9 @@ export function generateStoryboard(actions: BattleAction[]): StoryScene[] {
   // Determine if it's one of our predefined logs based on action IDs
   const isTrapReversal = actions.some(a => a.id.startsWith("tr"));
   const isAncientRevival = actions.some(a => a.id.startsWith("ar"));
+  const isCustom = actions.every(
+    (a) => !a.id.startsWith("a") && !a.id.startsWith("tr") && !a.id.startsWith("ar"),
+  );
 
   let scenes: StoryScene[] = [];
 
@@ -127,6 +130,66 @@ export function generateStoryboard(actions: BattleAction[]): StoryScene[] {
         prompt: "",
       },
     ];
+  } else if (isCustom) {
+    const baseDurations = [5, 6, 6, 8, 7];
+    const moodByTone = (tone?: string): StoryScene["mood"] => {
+      if (/heroic/i.test(tone ?? "")) return "heroic";
+      if (/chaotic/i.test(tone ?? "")) return "chaotic";
+      if (/dark/i.test(tone ?? "")) return "dark";
+      return "cinematic";
+    };
+    const cameraByAction = (action: BattleAction["action"]): StoryScene["camera"] => {
+      if (action === "attack" || action === "damage") return "whip-pan";
+      if (action === "summon") return "dolly-in";
+      if (action === "activate" || action === "chain") return "close-up";
+      return "overhead";
+    };
+    const intensityByAction = (action: BattleAction["action"]): StoryScene["intensity"] => {
+      if (action === "attack" || action === "damage") return 5;
+      if (action === "summon" || action === "activate" || action === "chain") return 4;
+      return 3;
+    };
+    const buildSummary = (a: BattleAction) => {
+      const objectText = a.objects?.length
+        ? ` Key objects: ${a.objects.map((o) => [o.name, o.zone, o.position, o.stats].filter(Boolean).join(" ")).join(", ")}.`
+        : "";
+      const sceneryText = a.scenery
+        ? ` Scenery: ${a.scenery.field}; ${a.scenery.lighting}; camera focuses on ${a.scenery.cameraFocus}; VFX: ${a.scenery.vfx}.`
+        : "";
+      const impactText = a.impact ? ` Impact: ${a.impact}.` : "";
+      const intentText = a.visualIntent ? ` Visual intent: ${a.visualIntent}` : "";
+      return `${a.summary}${objectText}${impactText}${sceneryText}${intentText}`;
+    };
+
+    scenes = actions.slice(0, 5).map((a, i) => ({
+      id: `s${i + 1}`,
+      title: a.card ? `${a.action}: ${a.card}` : a.summary.replace(/\.$/, ""),
+      sourceActionIds: [a.id],
+      actionSummary: buildSummary(a),
+      mood: moodByTone(a.scenery?.tone),
+      camera: cameraByAction(a.action),
+      intensity: intensityByAction(a.action),
+      duration: baseDurations[i] ?? 6,
+      prompt: "",
+    }));
+
+    while (scenes.length < 5) {
+      const i = scenes.length;
+      const previous = actions[Math.max(0, i - 1)];
+      scenes.push({
+        id: `s${i + 1}`,
+        title: "Battlefield transition",
+        sourceActionIds: previous ? [previous.id] : [],
+        actionSummary: previous
+          ? `The camera tracks the duel arena after ${previous.summary.toLowerCase()} Energy from the last play hangs over the field.`
+          : "A brief cinematic transition to establish the duel arena and card zones.",
+        mood: "cinematic",
+        camera: "overhead",
+        intensity: 3,
+        duration: baseDurations[i] ?? 6,
+        prompt: "",
+      });
+    }
   } else {
     // Default to main-demo or fallback mapping
     scenes = [

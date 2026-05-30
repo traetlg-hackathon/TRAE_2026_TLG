@@ -1,14 +1,10 @@
 import { NextResponse } from "next/server";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 
 export async function POST(req: Request) {
-  const apiKey = process.env.PIXVERSE_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json(
-      { error: "Missing PIXVERSE_API_KEY" },
-      { status: 500 },
-    );
-  }
-
   const body = await req.json().catch(() => null);
   const prompt = typeof body?.prompt === "string" ? body.prompt.trim() : "";
   const durationRaw = body?.duration;
@@ -21,34 +17,54 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Missing prompt" }, { status: 400 });
   }
 
-  const res = await fetch("https://app-api.pixverse.ai/openapi/v2/video/text/generate", {
-    method: "POST",
-    headers: {
-      "API-KEY": apiKey,
-      "Ai-trace-id": crypto.randomUUID(),
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      aspect_ratio: "16:9",
-      duration,
-      model: "v6",
-      prompt,
-      quality: "720p",
-      seed: 0,
-    }),
-  });
+  const safeDuration = Math.max(1, Math.min(15, Math.round(duration)));
 
-  const data = await res.json().catch(() => null);
-  const videoId =
-    data?.Resp?.video_id ?? data?.video_id ?? data?.data?.video_id ?? null;
+  if (process.env.PLAYWRIGHT_MOCK_PIXVERSE === "1") {
+    return NextResponse.json({
+      videoId: "mock-video-1",
+      data: { video_id: "mock-video-1", duration: safeDuration },
+    });
+  }
 
-  if (!res.ok || !videoId) {
+  try {
+    const { stdout } = await execFileAsync(
+      "pixverse",
+      [
+        "create",
+        "video",
+        "--prompt",
+        prompt,
+        "--model",
+        "v6",
+        "--quality",
+        "720p",
+        "--aspect-ratio",
+        "16:9",
+        "--duration",
+        String(safeDuration),
+        "--no-wait",
+        "--json",
+      ],
+      { maxBuffer: 10 * 1024 * 1024 },
+    );
+
+    const data = JSON.parse(stdout);
+    const videoId = data?.video_id ?? null;
+    if (!videoId) {
+      return NextResponse.json(
+        { error: "PixVerse CLI returned no video_id", data },
+        { status: 502 },
+      );
+    }
+
+    return NextResponse.json({ videoId, data });
+  } catch (e: any) {
+    const code = typeof e?.code === "number" ? e.code : null;
+    const stderr = typeof e?.stderr === "string" ? e.stderr : null;
+    const stdout = typeof e?.stdout === "string" ? e.stdout : null;
     return NextResponse.json(
-      { error: "PixVerse generate failed", status: res.status, data },
+      { error: "PixVerse CLI failed", code, stderr, stdout },
       { status: 502 },
     );
   }
-
-  return NextResponse.json({ videoId, data });
 }
-

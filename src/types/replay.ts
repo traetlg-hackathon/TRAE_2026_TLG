@@ -4,7 +4,27 @@ export type BattleActionType =
   | "chain"
   | "summon"
   | "attack"
-  | "damage";
+  | "damage"
+  | "draw"
+  | "set"
+  | "move";
+
+export type BattleObject = {
+  name: string;
+  kind: "card" | "monster" | "spell" | "trap" | "token" | "player" | "zone";
+  zone?: string;
+  controller?: string;
+  position?: "ATK" | "DEF" | "face-down" | "unknown";
+  stats?: string;
+};
+
+export type BattleScenery = {
+  field: string;
+  lighting: string;
+  cameraFocus: string;
+  vfx: string;
+  tone: string;
+};
 
 export type BattleAction = {
   id: string;
@@ -14,6 +34,11 @@ export type BattleAction = {
   action: BattleActionType;
   summary: string;
   visualIntent: string;
+  timestamp?: string;
+  rawLine?: string;
+  objects?: BattleObject[];
+  scenery?: BattleScenery;
+  impact?: string;
 };
 
 export type StoryScene = {

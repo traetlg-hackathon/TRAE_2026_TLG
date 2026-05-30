@@ -6,25 +6,33 @@ import { LogInput } from '@/components/LogInput';
 import { StoryboardPanel } from '@/components/StoryboardPanel';
 import { SceneControls } from '@/components/SceneControls';
 import { ReplayPreview } from '@/components/ReplayPreview';
-import { StoryScene } from '@/types/replay';
+import { ActionEditor } from '@/components/ActionEditor';
+import { BattleAction, StoryScene } from '@/types/replay';
 import { generateActions } from '@/lib/generateActions';
 import { generateStoryboard } from '@/lib/generateStoryboard';
 import { compilePixVersePrompt } from '@/lib/compilePixVersePrompt';
 
 export default function Home() {
-  const [logContent, setLogContent] = useState('');
+  const [actions, setActions] = useState<BattleAction[]>([]);
   const [scenes, setScenes] = useState<StoryScene[]>([]);
   const [selectedSceneId, setSelectedSceneId] = useState<string | null>(null);
+  const [autoRenderRequestId, setAutoRenderRequestId] = useState(0);
 
   const handleGenerate = (logId: string, content: string) => {
     if (!content.trim()) return;
-    
-    // Using the logic from Person 2 (modular files)
-    const actions = generateActions(logId);
+
+    const extractedActions = generateActions(logId, content);
+    setActions(extractedActions);
+    setScenes([]);
+    setSelectedSceneId(null);
+  };
+
+  const handleGenerateStoryboard = () => {
     const generatedScenes = generateStoryboard(actions);
     setScenes(generatedScenes);
     if (generatedScenes.length > 0) {
       setSelectedSceneId(generatedScenes[0].id);
+      setAutoRenderRequestId((v) => v + 1);
     }
   };
 
@@ -72,6 +80,14 @@ export default function Home() {
           </div>
         </div>
 
+        {actions.length > 0 && (
+          <ActionEditor
+            actions={actions}
+            onChange={setActions}
+            onGenerateStoryboard={handleGenerateStoryboard}
+          />
+        )}
+
         {/* Bottom Section: Replay Preview */}
         {scenes.length > 0 && (
           <div className="w-full">
@@ -79,7 +95,7 @@ export default function Home() {
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
               <h2 className="text-lg font-semibold text-white">Live Replay Preview</h2>
             </div>
-            <ReplayPreview scenes={scenes} />
+            <ReplayPreview scenes={scenes} autoRenderRequestId={autoRenderRequestId} />
           </div>
         )}
       </div>

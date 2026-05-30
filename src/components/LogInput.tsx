@@ -67,13 +67,13 @@ export function LogInput({ onGenerate }: LogInputProps) {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
         <Wand2 className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-        Generate Storyboard
+        Extract Replay Data
       </button>
 
       <div className="flex gap-2 p-3 bg-zinc-800/30 rounded-lg border border-zinc-800/50">
         <Info className="w-4 h-4 text-zinc-500 shrink-0" />
         <p className="text-[10px] text-zinc-500 leading-normal italic">
-          DuelCut uses deterministic logic for hackathon reliability. Real-world TCG logs will be supported in future versions.
+          DuelCut extracts real duel logs into editable actions, objects, and scenery before storyboard rendering.
         </p>
       </div>
     </div>
